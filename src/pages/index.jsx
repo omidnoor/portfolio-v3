@@ -1,10 +1,19 @@
+import Layout from "@/components/3d/Layout";
 import ImageFrames from "../components/3d/ImageFrames";
 
 const HomePage = () => {
   const images = [
-    { url: "https://images.unsplash.com/photo-15043994" },
-    { url: "https://images.unsplash.com/photo-150439" },
+    {
+      url: "https://fastly.picsum.photos/id/377/200/300.jpg?hmac=veEWg3ApI7rkKqMF6MuaWBmxPgnEe-Ar9eDdMG3q-kk",
+    },
+    {
+      url: "https://picsum.photos/id/237/200/300",
+    },
   ];
-  return <ImageFrames images={images} />;
+  return (
+    <Layout>
+      <ImageFrames images={images} />
+    </Layout>
+  );
 };
 export default HomePage;
