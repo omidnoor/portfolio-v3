@@ -6,7 +6,7 @@ import { OrbitControls } from "@react-three/drei";
 
 extend({ PerspectiveCamera });
 
-const Camera = (props) => {
+export const Camera = (props) => {
   const cameraRef = useRef(null);
   const { setDefaultCamera, size } = useThree();
 
@@ -29,8 +29,8 @@ const Camera = (props) => {
 const Layout = ({ children }) => {
   return (
     <Canvas dpr={[1, 1.5]}>
-      <OrbitControls />
-      <Camera fov={100} position={[0, 2, 15]} />
+      {/* <OrbitControls /> */}
+      {/* <Camera fov={70} position={[0, 2, 10]} /> */}
       <color attach="background" args={["#191920"]} />
       <fog attach="fog" args={["#191920", 0, 15]} />
       <ambientLight intensity={5} />
