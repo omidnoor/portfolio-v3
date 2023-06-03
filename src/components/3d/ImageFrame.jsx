@@ -1,22 +1,40 @@
+import { Html, Image } from "@react-three/drei";
 import { useLoader } from "@react-three/fiber";
-import { Html, MeshWobbleMaterial } from "@react-three/drei";
-import * as THREE from "three";
+import { useRef } from "react";
+import { Color } from "three";
 
-const ImageFrame = ({ url, position }) => {
-  const texture = useLoader(THREE.TextureLoader, url);
+// const GOLDENRATIO = process.env.GOLDENRATIO;
+// console.log(GOLDENRATIO);
+
+const GOLDENRATIO = 1.61803398875;
+
+const ImageFrame = ({ url, c = new Color(), ...props }) => {
+  const name = useRef();
+  const imageRef = useRef();
   return (
-    <mesh>
-      <boxGeometry scale={[10, 10, 10]} />
-      <meshBasicMaterial color={"red"} />
-      {/* <Html position={[0, 0, 0.5]}>
-        <iframe
-          src={url}
-          title="iframe"
-          width="100%"
-          height="100%"
-          style={{ border: "none" }}
-        />
-      </Html> */}
+    <mesh scale={[1, GOLDENRATIO, 0.05]} position={[0, GOLDENRATIO / 2, 0]}>
+      <boxGeometry />
+      <meshStandardMaterial
+        color="#151515"
+        metalness={0.5}
+        roughness={0.5}
+        envMapIntensity={2}
+      />
+      <mesh
+        ref={name}
+        raycast={() => null}
+        scale={[0.9, 0.93, 0.9]}
+        position={[0, 0, 0.2]}
+      >
+        <boxGeometry />
+        <meshBasicMaterial toneMapped={false} fog={false} />
+      </mesh>
+      <Image
+        raycast={() => null}
+        ref={imageRef}
+        position={[0, 0, 0.7]}
+        url={url}
+      />
     </mesh>
   );
 };
