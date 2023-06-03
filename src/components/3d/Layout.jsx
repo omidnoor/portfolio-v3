@@ -27,11 +27,11 @@ const Camera = (props) => {
 
 const Layout = ({ children }) => {
   return (
-    <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 2, 15] }}>
-      <Camera fov={70} position={[0, 2, 15]} />
+    <Canvas dpr={[1, 1.5]}>
+      <Camera fov={100} position={[0, 2, 15]} />
       <color attach="background" args={["#191920"]} />
-      <fog attach="fog" args={["#191920", 0, 0]} />
-      <ambientLight intensity={0.5} />
+      <fog attach="fog" args={["#191920", 0, 15]} />
+      <ambientLight intensity={5} />
       <pointLight position={[10, 10, 10]} />
       {children}
     </Canvas>
