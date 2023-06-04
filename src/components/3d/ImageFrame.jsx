@@ -13,7 +13,14 @@ import { useRoute } from "wouter";
 
 const GOLDENRATIO = 1.61803398875;
 
-const ImageFrame = ({ url, c = new Color(), portal, ...props }) => {
+const ImageFrame = ({
+  url,
+  c = new Color(),
+  portal,
+  hovered,
+  setHovered,
+  ...props
+}) => {
   const nameRef = useRef();
   const imageRef = useRef();
   const frameRef = useRef();
@@ -22,13 +29,11 @@ const ImageFrame = ({ url, c = new Color(), portal, ...props }) => {
   // const activeFrame = useStore((state) => state.activeFrame);
   // const setActiveFrame = useStore((state) => state.setActiveFrame);
 
-  const [hovered, setHovered] = useState(false);
   const [rnd] = useState(() => Math.random());
 
   const name = getUuidByString(url);
   const [_, params] = useRoute("/item/:id");
   const isActive = params?.id === name;
-  useCursor(hovered);
 
   useFrame((state, delta) => {
     // imageRef.current.material.zoom =
@@ -56,8 +61,6 @@ const ImageFrame = ({ url, c = new Color(), portal, ...props }) => {
         position={[0, GOLDENRATIO / 2, 0]}
         name={name}
         onPointerOver={(e) => {
-          // e.stopPropagation();
-
           setHovered(true);
         }}
         onPointerOut={(e) => {

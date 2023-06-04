@@ -4,6 +4,7 @@ import { Quaternion, Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
 import { damp3, dampQ } from "maath/easing";
 import { useStore } from "@/stores/store";
+import { useCursor } from "@react-three/drei";
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -16,8 +17,13 @@ const ImageFrames = ({
   const frameRef = useRef(null);
   const clickedRef = useRef(null);
 
+  const [hovered, setHovered] = useState(false);
+  useCursor(hovered);
+
   const activeFrame = useStore((state) => state.activeFrame);
   const setActiveFrame = useStore((state) => state.setActiveFrame);
+
+  useCursor(portal);
 
   useEffect(() => {
     if (activeFrame) {
@@ -43,17 +49,19 @@ const ImageFrames = ({
         e.stopPropagation();
         const frameName = e.object.name;
         setActiveFrame(frameName);
-        const frame = frameRef.current.getObjectByName(frameName);
-        // frame.updateWorldMatrix(true, true);
-        // frame.localToWorld(targetPosition.set(0, GOLDENRATIO * 0.5, 1.25));
-        // frame.getWorldQuaternion(targetQuaternion);
       }}
       onPointerMissed={(e) => {
         setActiveFrame(null);
       }}
     >
       {images.map((props, index) => (
-        <ImageFrame key={index} {...props} portal={portal} />
+        <ImageFrame
+          key={index}
+          hovered={hovered}
+          setHovered={setHovered}
+          {...props}
+          portal={portal}
+        />
       ))}
     </group>
   );
