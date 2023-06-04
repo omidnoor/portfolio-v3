@@ -1,3 +1,4 @@
+import { useStore } from "@/stores/store";
 import { Html, Image, Text, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { damp3, dampC } from "maath/easing";
@@ -15,6 +16,10 @@ const ImageFrame = ({ url, c = new Color(), ...props }) => {
   const nameRef = useRef();
   const imageRef = useRef();
   const frameRef = useRef();
+
+  // const activePage = useStore((state) => state.pages[pageName]);
+  // const activeFrame = useStore((state) => state.activeFrame);
+  // const setActiveFrame = useStore((state) => state.setActiveFrame);
 
   const [hovered, setHovered] = useState(false);
   const [rnd] = useState(() => Math.random());
@@ -51,6 +56,7 @@ const ImageFrame = ({ url, c = new Color(), ...props }) => {
         name={name}
         onPointerOver={(e) => {
           // e.stopPropagation();
+
           setHovered(true);
         }}
         onPointerOut={(e) => {
