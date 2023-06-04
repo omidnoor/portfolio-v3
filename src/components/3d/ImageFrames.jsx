@@ -14,10 +14,13 @@ const ImageFrames = ({
   targetPosition = new Vector3(),
   targetQuaternion = new Quaternion(),
 }) => {
-  const frameRef = useRef(null);
+  const framesRef = useRef(null);
   const clickedRef = useRef(null);
 
+  const [clicked, setClicked] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [frameEvent, setFrameEvent] = useState(null);
+
   useCursor(hovered);
 
   const activeFrame = useStore((state) => state.activeFrame);
@@ -27,7 +30,7 @@ const ImageFrames = ({
 
   useEffect(() => {
     if (activeFrame) {
-      const frame = frameRef.current.getObjectByName(activeFrame);
+      const frame = framesRef.current.getObjectByName(activeFrame);
       frame.parent.updateWorldMatrix(true, true);
       frame.parent.localToWorld(targetPosition.set(0, GOLDENRATIO * 0.5, 1.25));
       frame.parent.getWorldQuaternion(targetQuaternion);
@@ -42,14 +45,21 @@ const ImageFrames = ({
     dampQ(state.camera.quaternion, targetQuaternion, 0.4, delta);
   });
 
+  const handleClick = (event) => {
+    event.stopPropagation();
+    console.log(event.object);
+    setClicked(true);
+    if (event.object) {
+      const frameName = event.object.name;
+      setActiveFrame(frameName);
+      setFrameEvent(event);
+    }
+  };
+
   return (
     <group
-      ref={frameRef}
-      onClick={(e) => {
-        e.stopPropagation();
-        const frameName = e.object.name;
-        setActiveFrame(frameName);
-      }}
+      ref={framesRef}
+      onClick={handleClick}
       onPointerMissed={(e) => {
         setActiveFrame(null);
       }}
@@ -61,6 +71,9 @@ const ImageFrames = ({
           setHovered={setHovered}
           {...props}
           portal={portal}
+          framesRef={framesRef}
+          setClicked={setClicked}
+          frameEvent={frameEvent}
         />
       ))}
     </group>

@@ -8,9 +8,6 @@ import { Color } from "three";
 import getUuidByString from "uuid-by-string";
 import { useRoute } from "wouter";
 
-// const GOLDENRATIO = process.env.GOLDENRATIO;
-// console.log(GOLDENRATIO);
-
 const GOLDENRATIO = 1.61803398875;
 
 const ImageFrame = ({
@@ -19,15 +16,17 @@ const ImageFrame = ({
   portal,
   hovered,
   setHovered,
-  ...props
+  setClicked,
+  framesRef,
+  frameEvent,
 }) => {
   const nameRef = useRef();
   const imageRef = useRef();
   const frameRef = useRef();
 
   // const activePage = useStore((state) => state.pages[pageName]);
-  // const activeFrame = useStore((state) => state.activeFrame);
-  // const setActiveFrame = useStore((state) => state.setActiveFrame);
+  const activeFrame = useStore((state) => state.activeFrame);
+  const setActiveFrame = useStore((state) => state.setActiveFrame);
 
   const [rnd] = useState(() => Math.random());
 
@@ -54,8 +53,9 @@ const ImageFrame = ({
     }
   });
 
+  console.log(framesRef);
   return (
-    <group {...props}>
+    <group>
       <mesh
         scale={[1, GOLDENRATIO, 0.05]}
         position={[0, GOLDENRATIO / 2, 0]}
@@ -85,7 +85,11 @@ const ImageFrame = ({
           <meshBasicMaterial toneMapped={false} fog={false} />
         </mesh>
         <Html className="content-embed" portal={portal} scale={0.1} transform>
-          <Home />
+          <Home
+            onHover={setHovered}
+            setClicked={setClicked}
+            frameEvent={frameEvent}
+          />
         </Html>
         {/* <Image
           raycast={() => null}
