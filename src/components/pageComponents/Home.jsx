@@ -1,10 +1,10 @@
-// import styles from "./home.module.css";
+import styles from "./home.module.scss";
 
 const Home = () => {
   return (
-    <div style={{ color: "red" }}>
+    <div className={styles.home}>
       <h1>Hi, my name is Omid Noorshams</h1>
-      <p>world</p>
+      <p>Website Developer and Designer</p>
     </div>
   );
 };
