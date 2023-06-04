@@ -1,3 +1,4 @@
+import Home from "@/components/pageComponents/Home";
 import { useStore } from "@/stores/store";
 import { Html, Image, Text, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
@@ -12,7 +13,7 @@ import { useRoute } from "wouter";
 
 const GOLDENRATIO = 1.61803398875;
 
-const ImageFrame = ({ url, c = new Color(), ...props }) => {
+const ImageFrame = ({ url, c = new Color(), portal, ...props }) => {
   const nameRef = useRef();
   const imageRef = useRef();
   const frameRef = useRef();
@@ -30,14 +31,14 @@ const ImageFrame = ({ url, c = new Color(), ...props }) => {
   useCursor(hovered);
 
   useFrame((state, delta) => {
-    imageRef.current.material.zoom =
-      1 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) * 0.1;
-    damp3(
-      imageRef.current.scale,
-      [0.85 * (hovered ? 0.85 : 1), 0.9 * (hovered ? 0.905 : 1), 1],
-      0.1,
-      delta,
-    );
+    // imageRef.current.material.zoom =
+    //   1 + Math.sin(rnd * 10000 + state.clock.elapsedTime / 3) * 0.1;
+    // damp3(
+    //   imageRef.current.scale,
+    //   [0.85 * (hovered ? 0.85 : 1), 0.9 * (hovered ? 0.905 : 1), 1],
+    //   0.1,
+    //   delta,
+    // );
     if (frameRef.current) {
       dampC(
         frameRef.current.material.color,
@@ -80,13 +81,16 @@ const ImageFrame = ({ url, c = new Color(), ...props }) => {
           <boxGeometry />
           <meshBasicMaterial toneMapped={false} fog={false} />
         </mesh>
-        <Image
+        <Html className="content-embed" portal={portal} scale={0.1} transform>
+          <Home />
+        </Html>
+        {/* <Image
           raycast={() => null}
           ref={imageRef}
           position={[0, 0, 0.7]}
           url={url}
-        />
-        <Text
+        /> */}
+        {/* <Text
           maxWidth={0.1}
           anchorX="left"
           anchorY="top"
@@ -94,7 +98,7 @@ const ImageFrame = ({ url, c = new Color(), ...props }) => {
           fontSize={0.025}
         >
           {name.split("-").join(" ")}
-        </Text>
+        </Text> */}
       </mesh>
     </group>
   );

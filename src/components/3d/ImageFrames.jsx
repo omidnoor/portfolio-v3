@@ -9,6 +9,7 @@ const GOLDENRATIO = 1.61803398875;
 
 const ImageFrames = ({
   images,
+  portal,
   targetPosition = new Vector3(),
   targetQuaternion = new Quaternion(),
 }) => {
@@ -47,10 +48,12 @@ const ImageFrames = ({
         // frame.localToWorld(targetPosition.set(0, GOLDENRATIO * 0.5, 1.25));
         // frame.getWorldQuaternion(targetQuaternion);
       }}
-      onPointerMissed={(e) => {}}
+      onPointerMissed={(e) => {
+        setActiveFrame(null);
+      }}
     >
       {images.map((props, index) => (
-        <ImageFrame key={index} {...props} />
+        <ImageFrame key={index} {...props} portal={portal} />
       ))}
     </group>
   );
