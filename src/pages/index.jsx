@@ -3,17 +3,41 @@ import ImageFrames from "../components/3d/ImageFrames";
 import { Environment, MeshReflectorMaterial } from "@react-three/drei";
 import { useRef } from "react";
 
+const pages = [
+  {
+    name: "home",
+    position: [0, 1, 1.5],
+    rotation: [0, 0, 0],
+    // url: "https://picsum.photos/200/300?grayscale",
+  },
+  {
+    name: "about",
+    position: [-1.75, 1, 0.25],
+    rotation: [0, 0, 0],
+    // url: "https://picsum.photos/id/237/200/300",
+  },
+  {
+    name: "contact",
+    position: [1.75, 1, 0.25],
+    rotation: [0, 0, 0],
+    // url: "https://picsum.photos/id/237/200/300",
+  },
+  {
+    name: "projects",
+    position: [-2.15, 1, 1.5],
+    rotation: [0, 0, 0],
+    // url: "https://picsum.photos/id/237/200/300",
+  },
+  {
+    name: "testimonials",
+    position: [2.15, 1, 1.5],
+    rotation: [0, 0, 0],
+    // url: "https://picsum.photos/id/237/200/300",
+  },
+];
 const HomePage = () => {
   const domContentRef = useRef(null);
   const container = useRef(null);
-  const images = [
-    {
-      url: "https://picsum.photos/200/300?grayscale",
-    },
-    {
-      url: "https://picsum.photos/id/237/200/300",
-    },
-  ];
   return (
     <>
       <div
@@ -30,7 +54,7 @@ const HomePage = () => {
       />
       <Layout>
         <group position={[0, -0.5, 0]}>
-          <ImageFrames images={images} portal={domContentRef} />
+          <ImageFrames pages={pages} portal={domContentRef} />
           <mesh rotation={[-Math.PI / 2, 0, 0]}>
             <planeGeometry args={[50, 50]} />
             <MeshReflectorMaterial

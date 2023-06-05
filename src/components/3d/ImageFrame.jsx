@@ -7,18 +7,19 @@ import { useRef, useState } from "react";
 import { Color } from "three";
 import getUuidByString from "uuid-by-string";
 import { useRoute } from "wouter";
+import AboutMe from "../pageComponents/AboutMe";
+import { CustomMesh } from "./CustomMesh";
 
 const GOLDENRATIO = 1.61803398875;
 
 const ImageFrame = ({
-  url,
   c = new Color(),
   portal,
   hovered,
   setHovered,
   setClicked,
-  framesRef,
-  frameEvent,
+  handleClick,
+  ...props
 }) => {
   const nameRef = useRef();
   const imageRef = useRef();
@@ -30,9 +31,7 @@ const ImageFrame = ({
 
   const [rnd] = useState(() => Math.random());
 
-  const name = getUuidByString(url);
-  const [_, params] = useRoute("/item/:id");
-  const isActive = params?.id === name;
+  // const name = getUuidByString(url);
 
   useFrame((state, delta) => {
     // imageRef.current.material.zoom =
@@ -53,23 +52,17 @@ const ImageFrame = ({
     }
   });
 
-  console.log(framesRef);
   return (
     <group>
-      <mesh
+      {/* <mesh
+        onClick={handleClick}
         scale={[1, GOLDENRATIO, 0.05]}
         position={[0, GOLDENRATIO / 2, 0]}
-        name={name}
-        onPointerOver={(e) => {
-          setHovered(true);
-        }}
-        onPointerOut={(e) => {
-          setHovered(false);
-        }}
+        name={frameRef.current?.uuid}
       >
         <boxGeometry />
         <meshStandardMaterial
-          color="#151515"
+          color="#00007f"
           metalness={0.5}
           roughness={0.5}
           envMapIntensity={2}
@@ -82,22 +75,29 @@ const ImageFrame = ({
           position={[0, 0, 0.2]}
         >
           <boxGeometry />
-          <meshBasicMaterial toneMapped={false} fog={false} />
-        </mesh>
+          <meshBasicMaterial toneMapped={false} fog={false} /> */}
+      <CustomMesh frameRef={frameRef} handleClick={handleClick} {...props}>
         <Html className="content-embed" portal={portal} scale={0.1} transform>
-          <Home
-            onHover={setHovered}
-            setClicked={setClicked}
-            frameEvent={frameEvent}
-          />
+          <Home onHover={setHovered} setClicked={setClicked} />
         </Html>
-        {/* <Image
+      </CustomMesh>
+      {/* </mesh>
+      </mesh> */}
+    </group>
+  );
+};
+export default ImageFrame;
+
+{
+  /* <Image
           raycast={() => null}
           ref={imageRef}
           position={[0, 0, 0.7]}
           url={url}
-        /> */}
-        {/* <Text
+        /> */
+}
+{
+  /* <Text
           maxWidth={0.1}
           anchorX="left"
           anchorY="top"
@@ -105,9 +105,5 @@ const ImageFrame = ({
           fontSize={0.025}
         >
           {name.split("-").join(" ")}
-        </Text> */}
-      </mesh>
-    </group>
-  );
-};
-export default ImageFrame;
+        </Text> */
+}

@@ -1,18 +1,14 @@
 import styles from "./home.module.scss";
 import { useStore } from "@/stores/store";
 
-const Home = ({ onHover, setClicked, frameEvent }) => {
-  const activeFrame = useStore((state) => state.activeFrame);
+const Home = ({ onHover, setClicked }) => {
   const setActiveFrame = useStore((state) => state.setActiveFrame);
+  const frameEventName = useStore((state) => state.frameEventName);
 
   const handleClick = () => {
-    frameEvent.stopPropagation();
-    console.log(frameEvent.object);
-    setClicked(true);
-    if (frameEvent.object) {
-      console.log(frameEvent);
-      const frameName = frameEvent.object.name;
-      setActiveFrame(frameName);
+    if (frameEventName) {
+      setClicked(true);
+      setActiveFrame(frameEventName);
     }
   };
 

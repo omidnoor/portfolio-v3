@@ -9,7 +9,7 @@ import { useCursor } from "@react-three/drei";
 const GOLDENRATIO = 1.61803398875;
 
 const ImageFrames = ({
-  images,
+  pages,
   portal,
   targetPosition = new Vector3(),
   targetQuaternion = new Quaternion(),
@@ -19,12 +19,13 @@ const ImageFrames = ({
 
   const [clicked, setClicked] = useState(false);
   const [hovered, setHovered] = useState(false);
-  const [frameEvent, setFrameEvent] = useState(null);
+  const [frameEventName, _] = useState(null);
 
   useCursor(hovered);
 
   const activeFrame = useStore((state) => state.activeFrame);
   const setActiveFrame = useStore((state) => state.setActiveFrame);
+  const setFrameEventName = useStore((state) => state.setFrameEventName);
 
   useCursor(portal);
 
@@ -46,34 +47,39 @@ const ImageFrames = ({
   });
 
   const handleClick = (event) => {
-    event.stopPropagation();
-    console.log(event.object);
+    // event.stopPropagation();
     setClicked(true);
     if (event.object) {
       const frameName = event.object.name;
       setActiveFrame(frameName);
-      setFrameEvent(event);
+      setFrameEventName(frameName);
     }
   };
 
   return (
     <group
       ref={framesRef}
-      onClick={handleClick}
-      onPointerMissed={(e) => {
-        setActiveFrame(null);
+      // onClick={handleClick}
+      onPointerOver={(event) => {
+        setFrameEventName(event.object.name);
+        setHovered(true);
       }}
+      onPointerOut={(e) => {
+        setHovered(false);
+      }}
+      onPointerMissed={() => setActiveFrame(null)}
     >
-      {images.map((props, index) => (
+      {pages?.map((props, index) => (
         <ImageFrame
           key={index}
           hovered={hovered}
           setHovered={setHovered}
-          {...props}
           portal={portal}
           framesRef={framesRef}
           setClicked={setClicked}
-          frameEvent={frameEvent}
+          frameEventName={frameEventName}
+          handleClick={handleClick}
+          {...props}
         />
       ))}
     </group>
