@@ -1,21 +1,16 @@
 import styles from "./aboutme.module.scss";
 import { useStore } from "@/stores/store";
 
-const AboutMe = ({ onHover, setClicked }) => {
-  const setActiveFrame = useStore((state) => state.setActiveFrame);
-  const frameEventName = useStore((state) => state.frameEventName);
-
-  const handleClick = () => {
-    if (frameEventName) {
-      setClicked(true);
-      setActiveFrame(frameEventName);
-    }
-  };
-
+const AboutMe = ({ onHover }) => {
   return (
-    <div className={styles.AboutMe} onMouseOver={onHover} onClick={handleClick}>
+    <div className={styles.aboutme} onMouseEnter={onHover}>
       <h1>Hi, my name is Omid Noorshams</h1>
-      <p>This is the about me page</p>
+      <p>Website Developer and Designer</p>
+      <p>Website Developer and Designer</p>
+      <p>Website Developer and Designer</p>
+      <p>Website Developer and Designer</p>
+      <p>Website Developer and Designer</p>
+      <p>Website Developer and Designer</p>
     </div>
   );
 };

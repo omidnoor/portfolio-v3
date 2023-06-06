@@ -1,4 +1,3 @@
-import Home from "@/components/pageComponents/Home";
 import { useStore } from "@/stores/store";
 import { Html, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
@@ -6,8 +5,14 @@ import { damp3, dampC, dampQ } from "maath/easing";
 import { useRef, useState } from "react";
 import { Color } from "three";
 
-import { CustomMesh } from "./CustomMesh";
+import Home from "@/components/pageComponents/Home";
+import AboutMe from "../pageComponents/AboutMe";
 import { useEffect } from "react";
+
+const componentMapping = {
+  Home: Home,
+  AboutMe: AboutMe,
+};
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -22,22 +27,24 @@ const ImageFrame = ({
   setClicked,
   targetPosition,
   targetQuaternion,
+  activeFrame,
+  setActiveFrame,
+  setNameUuid,
+  nameUuid,
+  handleClick,
+  transparentFrameRef,
+  setHtmlClick,
+  setHtmlName,
   ...props
 }) => {
   const [hovered, setHovered] = useState(false);
-  const [nameUuid, setNameUuid] = useState(name);
-  const frameRef = useRef();
+  const frameRef = useRef(null);
 
-  const setActiveFrame = useStore((state) => state.setActiveFrame);
   const setFrameEventName = useStore((state) => state.setFrameEventName);
-  const activeFrame = useStore((state) => state.activeFrame);
+  const ComponentToRender = componentMapping[props.name];
 
-  useEffect(() => {
-    setNameUuid(frameRef.current?.uuid);
-  }, []);
   useFrame((state, delta) => {
     if (!frameRef.current) return;
-    // console.log(frameRef.current);
     dampC(
       frameRef.current?.material?.color,
       hovered ? [1, 0.647, 0] : [1, 1, 1],
@@ -46,21 +53,17 @@ const ImageFrame = ({
     );
   });
 
-  const handleClick = (event) => {
-    // event.stopPropagation();
-    setClicked(true);
-    if (event.object) {
-      const frameName = event.object.name;
-      setActiveFrame(frameName);
-      setFrameEventName(frameName);
-    }
-  };
+  // useEffect(() => {
+  //   console.log(transparentFrameRef.current, activeFrame);
+  // }, [hovered]);
+
+  const isActive = activeFrame?.uuid === nameUuid;
+  const contentStyle = isActive ? {} : { display: "none" };
 
   useCursor(hovered);
 
   return (
     <group
-      // ref={frameRef}
       onPointerOver={(event) => {
         setFrameEventName(event.object.name);
         setHovered(true);
@@ -71,10 +74,9 @@ const ImageFrame = ({
       onPointerMissed={() => setActiveFrame(null)}
     >
       <mesh
-        onClick={handleClick}
         scale={outerScale}
         position={outerPosition}
-        name={nameUuid}
+        // name={nameUuid}
         {...props}
       >
         <boxGeometry />
@@ -92,9 +94,35 @@ const ImageFrame = ({
         >
           <boxGeometry />
           <meshBasicMaterial fog={false} toneMapped={false} />
-          <Html className="content-embed" portal={portal} scale={0.1} transform>
-            <Home onHover={setHovered} setClicked={setClicked} />
+          <Html
+            // style={contentStyle}
+            className="content-embed"
+            portal={portal}
+            scale={0.1}
+            transform
+          >
+            <div
+              className="wrapper"
+              // onPointerDown={(e) => e.stopPropagation()}
+              name={props.name}
+              onClick={() => {
+                setHtmlClick((prev) => !prev);
+                setHtmlName(props.name);
+              }}
+            >
+              {ComponentToRender && (
+                <ComponentToRender
+                  onHover={setHovered}
+                  setClicked={setClicked}
+                  frameRef={frameRef}
+                />
+              )}
+            </div>
           </Html>
+          <mesh ref={transparentFrameRef}>
+            <boxGeometry scale={[1, GOLDENRATIO, 0.05]} />
+            <meshBasicMaterial color="#ffffff" transparent={true} opacity={0} />
+          </mesh>
         </mesh>
       </mesh>
     </group>

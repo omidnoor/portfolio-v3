@@ -5,31 +5,31 @@ import { useRef } from "react";
 
 const pages = [
   {
-    name: "home",
+    name: "Home",
     position: [0, 1, 1.5],
     rotation: [0, 0, 0],
     // url: "https://picsum.photos/200/300?grayscale",
   },
   {
-    name: "about",
+    name: "AboutMe",
     position: [-1.75, 1, 0.25],
     rotation: [0, 0, 0],
     // url: "https://picsum.photos/id/237/200/300",
   },
   {
-    name: "contact",
+    name: "ContactMe",
     position: [1.75, 1, 0.25],
     rotation: [0, 0, 0],
     // url: "https://picsum.photos/id/237/200/300",
   },
   {
-    name: "projects",
+    name: "Projects",
     position: [-2.15, 1, 1.5],
     rotation: [0, 0, 0],
     // url: "https://picsum.photos/id/237/200/300",
   },
   {
-    name: "testimonials",
+    name: "Testimonials",
     position: [2.15, 1, 1.5],
     rotation: [0, 0, 0],
     // url: "https://picsum.photos/id/237/200/300",
