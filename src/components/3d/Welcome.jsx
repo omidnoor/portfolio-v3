@@ -1,12 +1,72 @@
-import { Float, Text3D } from "@react-three/drei";
+import {
+  Center,
+  Float,
+  MeshTransmissionMaterial,
+  Text3D,
+  useMatcapTexture,
+} from "@react-three/drei";
+import { useThree } from "@react-three/fiber";
 
-const Welcome = ({ position }) => {
+const Welcome = ({ position, margin = 0.5 }) => {
+  const { width, height } = useThree((state) => state.viewport);
+
+  const [matcapTexture1] = useMatcapTexture("605352_E9CCC5_C7A8A3_A89291", 256);
+  const [matcapTexture2] = useMatcapTexture("CBCBCB_595959_8C8C8C_747474", 256);
+
   return (
-    <mesh position={position}>
-      <Float>
-        <Text3D>Hi, Welcome to my portfolio</Text3D>
-      </Float>
-    </mesh>
+    <group>
+      <Center position={[0, height * 0.66, -2]}>
+        <Float
+          rotationIntensity={0.2}
+          floatIntensity={0.3}
+          floatingRange={[-0.25, 0.25]}
+        >
+          <Text3D
+            font="/Inter_Bold.json"
+            letterSpacing={-0.0}
+            size={Math.max(width * 0.015, 0.2)}
+            height={0.09}
+          >
+            Hi, Welcome to my portfolio
+            <meshMatcapMaterial matcap={matcapTexture2} />
+          </Text3D>
+        </Float>
+      </Center>
+      <Center position={[0, height * 0.5, -1]}>
+        <Float
+          rotationIntensity={0.2}
+          floatIntensity={0.3}
+          floatingRange={[-0.25, 0.25]}
+        >
+          <Text3D
+            font="/Inter_Bold.json"
+            letterSpacing={-0.0}
+            size={Math.max(width * 0.015, 0.2)}
+            height={0.09}
+          >
+            My name is Omid Noorshams
+            <meshMatcapMaterial matcap={matcapTexture2} />
+          </Text3D>
+        </Float>
+      </Center>
+      <Center position={[0, height * 0.35, 0]}>
+        <Float
+          rotationIntensity={0.2}
+          floatIntensity={0.3}
+          floatingRange={[-0.25, 0.25]}
+        >
+          <Text3D
+            font="/Inter_Bold.json"
+            letterSpacing={-0.0}
+            size={Math.max(width * 0.015, 0.2)}
+            height={0.09}
+          >
+            Creative Web developer and designer
+            <meshMatcapMaterial matcap={matcapTexture1} />
+          </Text3D>
+        </Float>
+      </Center>
+    </group>
   );
 };
 export default Welcome;
