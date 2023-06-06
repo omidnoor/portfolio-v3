@@ -1,11 +1,6 @@
-import {
-  Center,
-  Float,
-  MeshTransmissionMaterial,
-  Text3D,
-  useMatcapTexture,
-} from "@react-three/drei";
+import { Center, Float, Text3D, useMatcapTexture } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
+import Effect from "../effect/Effect";
 
 const Welcome = ({ position, margin = 0.5 }) => {
   const { width, height } = useThree((state) => state.viewport);
@@ -15,7 +10,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
 
   return (
     <group>
-      <Center position={[0, height * 0.66, -2]}>
+      <Center position={[0, 5.5, -2]}>
         <Float
           rotationIntensity={0.2}
           floatIntensity={0.3}
@@ -32,7 +27,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
           </Text3D>
         </Float>
       </Center>
-      <Center position={[0, height * 0.5, -1]}>
+      <Center position={[0, 4.1, -1]}>
         <Float
           rotationIntensity={0.2}
           floatIntensity={0.3}
@@ -49,7 +44,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
           </Text3D>
         </Float>
       </Center>
-      <Center position={[0, height * 0.35, 0]}>
+      <Center position={[0, 3, 0]}>
         <Float
           rotationIntensity={0.2}
           floatIntensity={0.3}
@@ -62,10 +57,11 @@ const Welcome = ({ position, margin = 0.5 }) => {
             height={0.09}
           >
             Creative Web developer and designer
-            <meshMatcapMaterial matcap={matcapTexture1} />
+            <meshMatcapMaterial matcap={matcapTexture1} toneMapped={false} />
           </Text3D>
         </Float>
       </Center>
+      <Effect />
     </group>
   );
 };

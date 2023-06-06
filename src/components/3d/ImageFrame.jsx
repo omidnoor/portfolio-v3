@@ -66,11 +66,12 @@ const ImageFrame = ({
     >
       <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
-        <meshStandardMaterial
-          color="#151515"
+        <meshBasicMaterial
+          color={[0.2, 0.1, 2]}
           metalness={0.5}
           roughness={0.5}
           envMapIntensity={2}
+          toneMapped={false}
         />
         <mesh
           ref={frameRef}
@@ -79,7 +80,7 @@ const ImageFrame = ({
           position={innerPosition}
         >
           <boxGeometry />
-          <meshBasicMaterial fog={false} toneMapped={false} />
+          <meshBasicMaterial fog={false} />
           <Html
             // style={contentStyle}
             className="content-embed"
