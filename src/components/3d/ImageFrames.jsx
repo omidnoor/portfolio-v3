@@ -6,6 +6,7 @@ import { damp3, dampQ } from "maath/easing";
 import { useStore } from "@/stores/store";
 import { useCursor } from "@react-three/drei";
 import { useCallback } from "react";
+import { memo } from "react";
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -29,15 +30,18 @@ const ImageFrames = ({
   const setActiveFrame = useStore((state) => state.setActiveFrame);
   const setFrameEventName = useStore((state) => state.setFrameEventName);
 
-  const handleClick = (event) => {
-    // event.stopPropagation();
-    setClicked(true);
-    if (event.object && framesRef.current) {
-      const frameName = event.object.name;
-      setActiveFrame({ name: frameName, uuid: event.object.uuid });
-      setFrameEventName(frameName);
-    }
-  };
+  const handleClick = useCallback(
+    (event) => {
+      // event.stopPropagation();
+      setClicked(true);
+      if (event.object && framesRef.current) {
+        const frameName = event.object.name;
+        setActiveFrame({ name: frameName, uuid: event.object.uuid });
+        setFrameEventName(frameName);
+      }
+    },
+    [clicked, framesRef, setActiveFrame, setFrameEventName],
+  );
 
   console.log(activeFrame);
 
@@ -102,4 +106,4 @@ const ImageFrames = ({
     </group>
   );
 };
-export default ImageFrames;
+export default memo(ImageFrames);
