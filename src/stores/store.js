@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useStore = create((set) => ({
-  activeFrame: null,
+  activeFrame: { name: "", uuid: "" },
   frameEvent: null,
   frameUuids: [],
   frameUuid: null,

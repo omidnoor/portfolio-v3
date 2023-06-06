@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { damp3, dampQ } from "maath/easing";
 import { useStore } from "@/stores/store";
 import { useCursor } from "@react-three/drei";
+import { useCallback } from "react";
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -20,7 +21,7 @@ const ImageFrames = ({
   const [htmlClick, setHtmlClick] = useState(false);
   const [htmlName, setHtmlName] = useState(null);
 
-  const framesRef = useRef(null);
+  const framesRef = useRef({});
   const transparentFrameRef = useRef(null);
 
   const { addFrameUuid, frameUuids } = useStore();
@@ -28,9 +29,21 @@ const ImageFrames = ({
   const setActiveFrame = useStore((state) => state.setActiveFrame);
   const setFrameEventName = useStore((state) => state.setFrameEventName);
 
-  // console.log(activeFrame);
+  const handleClick = (event) => {
+    // event.stopPropagation();
+    setClicked(true);
+    if (event.object && framesRef.current) {
+      const frameName = event.object.name;
+      setActiveFrame({ name: frameName, uuid: event.object.uuid });
+      setFrameEventName(frameName);
+    }
+  };
+
+  console.log(activeFrame);
+
   useEffect(() => {
-    if (activeFrame) {
+    if (activeFrame.name && framesRef.current) {
+      // console.log(framesRef.current);
       const frame = framesRef.current.getObjectByName(activeFrame.name);
       frame.updateWorldMatrix(true, true);
       frame.localToWorld(targetPosition.set(0, GOLDENRATIO * 0, 20));
@@ -39,6 +52,11 @@ const ImageFrames = ({
       targetPosition.set(0, 0, 5.5);
       targetQuaternion.identity();
     }
+  });
+
+  useFrame((state, delta) => {
+    damp3(state.camera.position, targetPosition, 0.4, delta);
+    dampQ(state.camera.quaternion, targetQuaternion, 0.4, delta);
   });
 
   useEffect(() => {
@@ -54,28 +72,10 @@ const ImageFrames = ({
   const isActive = activeFrame?.uuid === nameUuid;
   const contentStyle = isActive ? {} : { display: "none" };
 
-  // console.log(contentStyle);
-
-  useFrame((state, delta) => {
-    damp3(state.camera.position, targetPosition, 0.4, delta);
-    dampQ(state.camera.quaternion, targetQuaternion, 0.4, delta);
-  });
-
   useEffect(() => {
     console.log(htmlName);
     setActiveFrame({ ...activeFrame, name: htmlName });
   }, [htmlClick]);
-
-  const handleClick = (event) => {
-    // event.stopPropagation();
-    setClicked(true);
-    if (event.object && framesRef.current) {
-      const frameName = event.object.name;
-      setActiveFrame({ name: frameName, uuid: event.object.uuid });
-      setFrameEventName(frameName);
-      // console.log(event);
-    }
-  };
 
   return (
     <group ref={framesRef} onClick={handleClick}>

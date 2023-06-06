@@ -8,6 +8,7 @@ import { Color } from "three";
 import Home from "@/components/pageComponents/Home";
 import AboutMe from "../pageComponents/AboutMe";
 import { useEffect } from "react";
+import { memo } from "react";
 
 const componentMapping = {
   Home: Home,
@@ -71,7 +72,7 @@ const ImageFrame = ({
       onPointerOut={(e) => {
         setHovered(false);
       }}
-      onPointerMissed={() => setActiveFrame(null)}
+      onPointerMissed={() => setActiveFrame({ name: "", uuid: "" })}
     >
       <mesh
         scale={outerScale}
