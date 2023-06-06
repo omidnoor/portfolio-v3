@@ -1,0 +1,65 @@
+$bp-sm: 480px;
+$bp-md: 640px;
+$bp-lg: 740px;
+$bp-xl: 960px;
+$bp-xxl: 1200px;
+$bp-xxxl: 1400px;
+
+$h-sm: 1rem;
+$h-md: 1.25rem;
+$h-lg: 2rem;
+$h-xl: 3rem;
+
+$btn-primary-color: #ffc400;
+$md-dark-blue: rgba(1, 65, 255, 0.4);
+
+.blueGlow::before {
+  background: var(--secondary-glow);
+  border-radius: 50%;
+  width: 380px;
+  height: 380px;
+  // margin-left: -400px;
+}
+
+.blueGlow::after {
+  background: var(--primary-glow);
+  width: 380px;
+  height: 380px;
+  z-index: -1;
+}
+
+.blueGlow::before,
+.blueGlow::after {
+  content: "";
+  left: 57%;
+  position: absolute;
+  filter: blur(45px);
+  transform: translateZ(0);
+}
+
+@mixin responsive-font(
+  $min-font-size,
+  $max-font-size,
+  $min-viewport,
+  $max-viewport
+) {
+  // Calculate the font scaling factors
+  $font-size-diff: $max-font-size - $min-font-size;
+  $viewport-diff: $max-viewport - $min-viewport;
+  $font-scaling-factor: $font-size-diff / $viewport-diff;
+
+  // Set the base font size
+  font-size: $min-font-size;
+
+  // Set the font size for the minimum viewport size
+  @media (min-width: $min-viewport) {
+    font-size: calc(
+      #{$min-font-size} + #{$font-scaling-factor} * (100vw - #{$min-viewport}px)
+    );
+  }
+
+  // Set the font size for the maximum viewport size
+  @media (min-width: $max-viewport) {
+    font-size: $max-font-size;
+  }
+}

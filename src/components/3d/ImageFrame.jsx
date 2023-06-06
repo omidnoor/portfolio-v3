@@ -5,8 +5,8 @@ import { dampC } from "maath/easing";
 import { useRef, useState } from "react";
 import { Color } from "three";
 
-import Home from "@/components/pageComponents/Home";
-import AboutMe from "../pageComponents/AboutMe";
+import Home from "@/components/pageComponents/home/Home";
+import AboutMe from "../pageComponents/aboutMe/AboutMe";
 import { memo } from "react";
 
 const componentMapping = {
@@ -45,7 +45,7 @@ const ImageFrame = ({
     if (!frameRef.current) return;
     dampC(
       frameRef.current?.material?.color,
-      hovered ? [1, 0.647, 0] : [1, 1, 1],
+      hovered ? [1, 0.8, 0.9] : [1, 1, 1],
       0.1,
       delta,
     );
@@ -67,7 +67,7 @@ const ImageFrame = ({
       <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
         <meshBasicMaterial
-          color={[0.2, 0.8, 1]}
+          color={[0.5, 0.8, 1.5]}
           metalness={0.5}
           roughness={0.5}
           envMapIntensity={2}
