@@ -1,6 +1,6 @@
 import { useThree, Canvas, extend } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
-import { PerspectiveCamera } from "three";
+import { PerspectiveCamera, StereoCamera, OrthographicCamera } from "three";
 import ImageFrames from "./ImageFrames";
 import { OrbitControls } from "@react-three/drei";
 

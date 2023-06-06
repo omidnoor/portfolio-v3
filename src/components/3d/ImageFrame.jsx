@@ -86,6 +86,7 @@ const ImageFrame = ({
             portal={portal}
             scale={0.1}
             transform
+            sprite
           >
             <div
               className="wrapper"
@@ -95,6 +96,10 @@ const ImageFrame = ({
                 setHtmlClick((prev) => !prev);
                 setHtmlName(props.name);
               }}
+              // style={{
+              //   transform: "rotateY(20deg)",
+              //   transform: "rotateZ(20deg)",
+              // }}
             >
               {ComponentToRender && (
                 <ComponentToRender
@@ -105,10 +110,6 @@ const ImageFrame = ({
               )}
             </div>
           </Html>
-          <mesh ref={transparentFrameRef}>
-            <boxGeometry scale={[1, GOLDENRATIO, 0.05]} position={(0, 0, 2)} />
-            <meshBasicMaterial color="#ffffff" transparent={true} opacity={0} />
-          </mesh>
         </mesh>
       </mesh>
     </group>
