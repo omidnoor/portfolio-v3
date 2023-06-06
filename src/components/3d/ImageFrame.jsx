@@ -1,5 +1,5 @@
 import { useStore } from "@/stores/store";
-import { Html, useCursor } from "@react-three/drei";
+import { Center, Html, Text3D, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { dampC } from "maath/easing";
 import { useRef, useState } from "react";
@@ -67,7 +67,7 @@ const ImageFrame = ({
       <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
         <meshBasicMaterial
-          color={[0.2, 0.1, 2]}
+          color={[0.2, 0.8, 1]}
           metalness={0.5}
           roughness={0.5}
           envMapIntensity={2}
@@ -111,6 +111,24 @@ const ImageFrame = ({
               )}
             </div>
           </Html>
+        </mesh>
+        <mesh
+          onClick={() => {
+            setHtmlClick((prev) => !prev);
+            setHtmlName(props.name);
+          }}
+        >
+          <Center position={[0, 0.7, 0]}>
+            <Text3D
+              font="/Inter_Bold.json"
+              letterSpacing={-0.0}
+              size={0.1}
+              height={0.1}
+            >
+              {props.name}
+              <meshBasicMaterial toneMapped={false} />
+            </Text3D>
+          </Center>
         </mesh>
       </mesh>
     </group>

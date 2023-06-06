@@ -56,7 +56,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
             size={Math.max(width * 0.015, 0.2)}
             height={0.09}
           >
-            Creative Web developer and designer
+            Creative Web Developer & Designer
             <meshMatcapMaterial matcap={matcapTexture1} toneMapped={false} />
           </Text3D>
         </Float>
