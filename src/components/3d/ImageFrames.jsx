@@ -18,14 +18,12 @@ const ImageFrames = ({
 }) => {
   const [clicked, setClicked] = useState(false);
   const [frameEventName, _] = useState(null);
-  const [nameUuid, setNameUuid] = useState([]);
   const [htmlClick, setHtmlClick] = useState(false);
   const [htmlName, setHtmlName] = useState(null);
 
   const framesRef = useRef({});
   const transparentFrameRef = useRef(null);
 
-  const { addFrameUuid, frameUuids } = useStore();
   const activeFrame = useStore((state) => state.activeFrame);
   const setActiveFrame = useStore((state) => state.setActiveFrame);
   const setFrameEventName = useStore((state) => state.setFrameEventName);
@@ -36,18 +34,15 @@ const ImageFrames = ({
       setClicked(true);
       if (event.object && framesRef.current) {
         const frameName = event.object.name;
-        setActiveFrame({ name: frameName, uuid: event.object.uuid });
+        setActiveFrame({ name: frameName });
         setFrameEventName(frameName);
       }
     },
     [clicked, framesRef, setActiveFrame, setFrameEventName],
   );
 
-  console.log(activeFrame);
-
   useEffect(() => {
     if (activeFrame.name && framesRef.current) {
-      // console.log(framesRef.current);
       const frame = framesRef.current.getObjectByName(activeFrame.name);
       frame.updateWorldMatrix(true, true);
       frame.localToWorld(targetPosition.set(0, GOLDENRATIO * 0, 20));
@@ -64,21 +59,7 @@ const ImageFrames = ({
   });
 
   useEffect(() => {
-    if (framesRef.current && !frameUuids.includes(framesRef.current.uuid)) {
-      addFrameUuid(framesRef.current.uuid);
-    }
-  }, [framesRef, addFrameUuid, frameUuids]);
-
-  useEffect(() => {
-    setNameUuid(framesRef.current?.uuid);
-  }, []);
-
-  const isActive = activeFrame?.uuid === nameUuid;
-  const contentStyle = isActive ? {} : { display: "none" };
-
-  useEffect(() => {
-    console.log(htmlName);
-    setActiveFrame({ ...activeFrame, name: htmlName });
+    setActiveFrame({ name: htmlName });
   }, [htmlClick]);
 
   return (
@@ -93,9 +74,6 @@ const ImageFrames = ({
           targetQuaternion={targetQuaternion}
           setActiveFrame={setActiveFrame}
           activeFrame={activeFrame}
-          setNameUuid={setNameUuid}
-          nameUuid={nameUuid}
-          contentStyle={contentStyle}
           transparentFrameRef={transparentFrameRef}
           handleClick={handleClick}
           setHtmlClick={setHtmlClick}

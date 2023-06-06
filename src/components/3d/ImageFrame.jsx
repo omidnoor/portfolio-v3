@@ -1,13 +1,12 @@
 import { useStore } from "@/stores/store";
 import { Html, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { damp3, dampC, dampQ } from "maath/easing";
+import { dampC } from "maath/easing";
 import { useRef, useState } from "react";
 import { Color } from "three";
 
 import Home from "@/components/pageComponents/Home";
 import AboutMe from "../pageComponents/AboutMe";
-import { useEffect } from "react";
 import { memo } from "react";
 
 const componentMapping = {
@@ -30,8 +29,6 @@ const ImageFrame = ({
   targetQuaternion,
   activeFrame,
   setActiveFrame,
-  setNameUuid,
-  nameUuid,
   handleClick,
   transparentFrameRef,
   setHtmlClick,
@@ -54,13 +51,6 @@ const ImageFrame = ({
     );
   });
 
-  // useEffect(() => {
-  //   console.log(transparentFrameRef.current, activeFrame);
-  // }, [hovered]);
-
-  const isActive = activeFrame?.uuid === nameUuid;
-  const contentStyle = isActive ? {} : { display: "none" };
-
   useCursor(hovered);
 
   return (
@@ -72,14 +62,9 @@ const ImageFrame = ({
       onPointerOut={(e) => {
         setHovered(false);
       }}
-      onPointerMissed={() => setActiveFrame({ name: "", uuid: "" })}
+      onPointerMissed={() => setActiveFrame({ name: "" })}
     >
-      <mesh
-        scale={outerScale}
-        position={outerPosition}
-        // name={nameUuid}
-        {...props}
-      >
+      <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
         <meshStandardMaterial
           color="#151515"
@@ -121,7 +106,7 @@ const ImageFrame = ({
             </div>
           </Html>
           <mesh ref={transparentFrameRef}>
-            <boxGeometry scale={[1, GOLDENRATIO, 0.05]} />
+            <boxGeometry scale={[1, GOLDENRATIO, 0.05]} position={(0, 0, 2)} />
             <meshBasicMaterial color="#ffffff" transparent={true} opacity={0} />
           </mesh>
         </mesh>
@@ -129,4 +114,4 @@ const ImageFrame = ({
     </group>
   );
 };
-export default ImageFrame;
+export default memo(ImageFrame);
