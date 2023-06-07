@@ -1,8 +1,8 @@
 import { useStore } from "@/stores/store";
-import { Center, Html, Text3D, useCursor } from "@react-three/drei";
+import { Center, Html, Image, Text3D, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { dampC } from "maath/easing";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Color } from "three";
 
 import Home from "@/components/pageComponents/home/Home";
@@ -33,9 +33,11 @@ const ImageFrame = ({
   transparentFrameRef,
   setHtmlClick,
   setHtmlName,
+  pagesName,
   ...props
 }) => {
   const [hovered, setHovered] = useState(false);
+  const [isActiveFrame, setIsActiveFrame] = useState(false);
   const frameRef = useRef(null);
 
   const setFrameEventName = useStore((state) => state.setFrameEventName);
@@ -50,6 +52,19 @@ const ImageFrame = ({
       delta,
     );
   });
+  console.log();
+  useEffect(() => {
+    console.log(
+      activeFrame.name === props.name
+        ? `${props.name} is active`
+        : `${props.name} is not active`,
+    );
+    if (activeFrame.name === props.name) {
+      setIsActiveFrame(true);
+    } else {
+      setIsActiveFrame(false);
+    }
+  }, [activeFrame]);
 
   useCursor(hovered);
 
@@ -67,7 +82,7 @@ const ImageFrame = ({
       <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
         <meshBasicMaterial
-          color={[0.5, 0.8, 1.5]}
+          color={[0.9, 0.9, 1.5]}
           metalness={0.5}
           roughness={0.5}
           envMapIntensity={2}
@@ -81,6 +96,13 @@ const ImageFrame = ({
         >
           <boxGeometry />
           <meshBasicMaterial fog={false} />
+          {!isActiveFrame && (
+            <Image
+              url={props.url}
+              raycast={() => null}
+              position={[0, 0, 0.7]}
+            />
+          )}
           <Html
             // style={contentStyle}
             className="content-embed"
@@ -97,10 +119,10 @@ const ImageFrame = ({
                 setHtmlClick((prev) => !prev);
                 setHtmlName(props.name);
               }}
-              // style={{
-              //   transform: "rotateY(20deg)",
-              //   transform: "rotateZ(20deg)",
-              // }}
+              style={{
+                width: "100%",
+                height: "100%",
+              }}
             >
               {ComponentToRender && (
                 <ComponentToRender
@@ -110,6 +132,7 @@ const ImageFrame = ({
                 />
               )}
             </div>
+            {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
           </Html>
         </mesh>
         <mesh

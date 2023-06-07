@@ -1,39 +1,40 @@
 import Layout from "@/components/3d/Layout";
 import ImageFrames from "../components/3d/ImageFrames";
 import { Environment, MeshReflectorMaterial } from "@react-three/drei";
-import { useRef } from "react";
+import { Suspense, useRef } from "react";
 import Welcome from "@/components/3d/Welcome";
+import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
 
 const pages = [
   {
     name: "Home",
     position: [0, 1, 1],
     rotation: [0, 0, 0],
-    // url: "https://picsum.photos/200/300?grayscale",
+    url: "https://picsum.photos/200/300?grayscale",
   },
   {
     name: "AboutMe",
     position: [-1.45, 1, 0.25],
     rotation: [0, Math.PI * 0.25, 0],
-    // url: "https://picsum.photos/id/237/200/300",
+    url: "https://picsum.photos/id/237/200/300",
   },
   {
     name: "ContactMe",
     position: [1.45, 1, 0.25],
     rotation: [0, -Math.PI * 0.25, 0],
-    // url: "https://picsum.photos/id/237/200/300",
+    url: "https://picsum.photos/id/237/200/300",
   },
   {
     name: "Projects",
     position: [-2.15, 1, 1.5],
     rotation: [0, Math.PI * 0.25, 0],
-    // url: "https://picsum.photos/id/237/200/300",
+    url: "https://picsum.photos/id/237/200/300",
   },
   {
     name: "Testimonials",
     position: [2.15, 1, 1.5],
     rotation: [0, -Math.PI * 0.25, 0],
-    // url: "https://picsum.photos/id/237/200/300",
+    url: "https://picsum.photos/id/237/200/300",
   },
 ];
 const HomePage = () => {
@@ -54,6 +55,7 @@ const HomePage = () => {
         ref={domContentRef}
       />
       <Layout>
+        {/* <Suspense fallback={<CustomLoader />}> */}
         <group position={[0, -0.9, 0]}>
           <Welcome position={[0, 3, 0]} />
           <ImageFrames pages={pages} portal={domContentRef} />
@@ -74,6 +76,7 @@ const HomePage = () => {
           </mesh>
           <Environment preset="forest" />
         </group>
+        {/* </Suspense> */}
       </Layout>
     </>
   );

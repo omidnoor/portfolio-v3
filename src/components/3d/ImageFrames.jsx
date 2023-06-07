@@ -20,6 +20,7 @@ const ImageFrames = ({
   const [frameEventName, _] = useState(null);
   const [htmlClick, setHtmlClick] = useState(false);
   const [htmlName, setHtmlName] = useState(null);
+  const [pagesName, setPagesName] = useState([]);
 
   const framesRef = useRef({});
   const transparentFrameRef = useRef(null);
@@ -27,6 +28,12 @@ const ImageFrames = ({
   const activeFrame = useStore((state) => state.activeFrame);
   const setActiveFrame = useStore((state) => state.setActiveFrame);
   const setFrameEventName = useStore((state) => state.setFrameEventName);
+
+  useEffect(() => {
+    pages.map((page) => {
+      pagesName.push(page.name);
+    });
+  }, []);
 
   const handleClick = useCallback(
     (event) => {
@@ -78,6 +85,7 @@ const ImageFrames = ({
           handleClick={handleClick}
           setHtmlClick={setHtmlClick}
           setHtmlName={setHtmlName}
+          pagesName={pagesName}
           {...props}
         />
       ))}

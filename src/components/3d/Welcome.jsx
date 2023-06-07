@@ -12,9 +12,9 @@ const Welcome = ({ position, margin = 0.5 }) => {
     <group>
       <Center position={[0, 5.5, -2]}>
         <Float
-          rotationIntensity={0.2}
+          rotationIntensity={0.6}
           floatIntensity={0.3}
-          floatingRange={[-0.25, 0.25]}
+          floatingRange={[-0.2, 0.2]}
         >
           <Text3D
             font="/Inter_Bold.json"
@@ -29,9 +29,9 @@ const Welcome = ({ position, margin = 0.5 }) => {
       </Center>
       <Center position={[0, 4.1, -1]}>
         <Float
-          rotationIntensity={0.2}
+          rotationIntensity={0.6}
           floatIntensity={0.3}
-          floatingRange={[-0.25, 0.25]}
+          floatingRange={[-0.2, 0.2]}
         >
           <Text3D
             font="/Inter_Bold.json"
@@ -46,9 +46,9 @@ const Welcome = ({ position, margin = 0.5 }) => {
       </Center>
       <Center position={[0, 3, 0]}>
         <Float
-          rotationIntensity={0.2}
+          rotationIntensity={0.6}
           floatIntensity={0.3}
-          floatingRange={[-0.25, 0.25]}
+          floatingRange={[-0.2, 0.2]}
         >
           <Text3D
             font="/Inter_Bold.json"

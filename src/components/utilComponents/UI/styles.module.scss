@@ -1,0 +1,33 @@
+@import "@/styles/global.scss";
+
+.btn {
+  padding: 8px 32px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #fff;
+  border: 2px solid $btn-primary-color;
+  font-size: inherit;
+}
+.btnContained {
+  background-color: $btn-primary-color !important;
+  color: #000 !important;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: transparent !important;
+      border: 2px solid $btn-primary-color;
+      color: #fff !important;
+    }
+  }
+}
+
+.btnOutlined {
+  background-color: transparent !important;
+  border: 2px solid $btn-primary-color !important;
+  color: #fff !important;
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      background-color: $btn-primary-color !important;
+      color: #000 !important;
+    }
+  }
+}
