@@ -8,6 +8,7 @@ import { Color } from "three";
 import Home from "@/components/pageComponents/home/Home";
 import AboutMe from "../pageComponents/aboutMe/AboutMe";
 import { memo } from "react";
+// import { useTransition, animated } from "react-spring";
 
 const componentMapping = {
   Home: Home,
@@ -66,6 +67,13 @@ const ImageFrame = ({
     }
   }, [activeFrame]);
 
+  // const transitions = useTransition(isActiveFrame, {
+  //   from: { opacity: 0 },
+  //   enter: { opacity: 1 },
+  //   // leave: { opacity: 0 },
+  //   config: { tension: 100, friction: 50 },
+  // });
+
   useCursor(hovered);
 
   return (
@@ -112,6 +120,8 @@ const ImageFrame = ({
               transform
               sprite
             >
+              {/* {transitions((style, item) => ( */}
+              {/* <animated.div */}
               <div
                 className="wrapper"
                 // onPointerDown={(e) => e.stopPropagation()}
@@ -121,6 +131,7 @@ const ImageFrame = ({
                   setHtmlName(props.name);
                 }}
                 style={{
+                  // ...style,
                   width: "100%",
                   height: "100%",
                 }}
@@ -133,6 +144,8 @@ const ImageFrame = ({
                   />
                 )}
               </div>
+              {/* </animated.div> */}
+              {/* ))} */}
               {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
             </Html>
           )}
