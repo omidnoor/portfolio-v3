@@ -8,6 +8,7 @@ import { Color } from "three";
 import Home from "@/components/pageComponents/home/Home";
 import AboutMe from "../pageComponents/aboutMe/AboutMe";
 import { memo } from "react";
+import { Deep_Blue } from "../utilComponents/variables/colors";
 // import { useTransition, animated } from "react-spring";
 
 const componentMapping = {
@@ -90,7 +91,7 @@ const ImageFrame = ({
       <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
         <meshBasicMaterial
-          color={[0.9, 0.9, 1.5]}
+          color={Deep_Blue}
           metalness={0.5}
           roughness={0.5}
           envMapIntensity={2}
@@ -156,7 +157,7 @@ const ImageFrame = ({
             setHtmlName(props.name);
           }}
         >
-          <Center position={[0, 0.7, 0]}>
+          <Center position={[0, 0.6, 0]}>
             <Text3D
               font="/Inter_Bold.json"
               letterSpacing={-0.0}
@@ -164,7 +165,7 @@ const ImageFrame = ({
               height={0.1}
             >
               {props.name}
-              <meshBasicMaterial toneMapped={false} />
+              <meshBasicMaterial toneMapped={false} color={Deep_Blue} />
             </Text3D>
           </Center>
         </mesh>

@@ -5,8 +5,8 @@ import Effect from "../effect/Effect";
 const Welcome = ({ position, margin = 0.5 }) => {
   const { width, height } = useThree((state) => state.viewport);
 
-  const [matcapTexture1] = useMatcapTexture("605352_E9CCC5_C7A8A3_A89291", 256);
-  const [matcapTexture2] = useMatcapTexture("CBCBCB_595959_8C8C8C_747474", 256);
+  const [matcapTexture1] = useMatcapTexture("191514_6D5145_4E3324_3B564D", 256);
+  const [matcapTexture2] = useMatcapTexture("191514_6D5145_4E3324_3B564D", 256);
 
   return (
     <group>
@@ -18,8 +18,8 @@ const Welcome = ({ position, margin = 0.5 }) => {
         >
           <Text3D
             font="/Inter_Bold.json"
-            letterSpacing={-0.0}
-            size={Math.max(width * 0.015, 0.2)}
+            letterSpacing={0.02}
+            size={Math.max(width * 0.02, 0.2)}
             height={0.09}
           >
             Hi, Welcome to my portfolio
@@ -35,8 +35,8 @@ const Welcome = ({ position, margin = 0.5 }) => {
         >
           <Text3D
             font="/Inter_Bold.json"
-            letterSpacing={-0.0}
-            size={Math.max(width * 0.015, 0.2)}
+            letterSpacing={0.02}
+            size={Math.max(width * 0.02, 0.2)}
             height={0.09}
           >
             My name is Omid Noorshams
@@ -52,8 +52,8 @@ const Welcome = ({ position, margin = 0.5 }) => {
         >
           <Text3D
             font="/Inter_Bold.json"
-            letterSpacing={-0.0}
-            size={Math.max(width * 0.015, 0.2)}
+            letterSpacing={0.02}
+            size={Math.max(width * 0.02, 0.2)}
             height={0.09}
           >
             Creative Web Developer & Designer
@@ -61,7 +61,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
           </Text3D>
         </Float>
       </Center>
-      <Effect />
+      {/* <Effect /> */}
     </group>
   );
 };

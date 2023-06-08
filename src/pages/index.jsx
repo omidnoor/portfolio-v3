@@ -4,6 +4,7 @@ import { Environment, MeshReflectorMaterial } from "@react-three/drei";
 import { Suspense, useRef } from "react";
 import Welcome from "@/components/3d/Welcome";
 import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
+import { Sand_Color } from "@/components/utilComponents/variables/colors";
 
 const pages = [
   {
@@ -64,17 +65,17 @@ const HomePage = () => {
               <MeshReflectorMaterial
                 blur={[300, 100]}
                 resolution={1024}
-                mixBlur={1}
-                mixStrength={50}
+                mixBlur={15}
+                mixStrength={2}
                 roughness={1}
                 depthScale={1.2}
-                minDepthThreshold={0.4}
+                minDepthThreshold={0.2}
                 maxDepthThreshold={1.4}
-                color="#010002"
-                metalness={0.5}
+                color={Sand_Color}
+                metalness={0.6}
               />
             </mesh>
-            <Environment preset="forest" />
+            {/* <Environment preset="city" /> */}
           </group>
         </Suspense>
       </Layout>

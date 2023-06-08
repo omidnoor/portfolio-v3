@@ -1,8 +1,6 @@
-import { useThree, Canvas, extend } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
-import { PerspectiveCamera, StereoCamera, OrthographicCamera } from "three";
-import ImageFrames from "./ImageFrames";
-import { OrbitControls } from "@react-three/drei";
+import { Canvas, extend } from "@react-three/fiber";
+import { PerspectiveCamera } from "three";
+import { SKY_BLUE } from "../utilComponents/variables/colors";
 
 extend({ PerspectiveCamera });
 
@@ -10,8 +8,8 @@ const Layout = ({ children }) => {
   return (
     <Canvas dpr={[1, 1.5]}>
       {/* <OrbitControls /> */}
-      <color attach="background" args={["#191920"]} />
-      <fog attach="fog" args={["#191920", 0, 15]} />
+      <color attach="background" args={[SKY_BLUE]} />
+      <fog attach="fog" args={[SKY_BLUE, 0, 15]} />
       <ambientLight intensity={5} />
       <pointLight position={[10, 10, 10]} />
       {children}
@@ -19,3 +17,5 @@ const Layout = ({ children }) => {
   );
 };
 export default Layout;
+
+// #191920
