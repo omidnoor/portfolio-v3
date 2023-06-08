@@ -103,37 +103,39 @@ const ImageFrame = ({
               position={[0, 0, 0.7]}
             />
           )}
-          <Html
-            // style={contentStyle}
-            className="content-embed"
-            portal={portal}
-            scale={0.1}
-            transform
-            sprite
-          >
-            <div
-              className="wrapper"
-              // onPointerDown={(e) => e.stopPropagation()}
-              name={props.name}
-              onClick={() => {
-                setHtmlClick((prev) => !prev);
-                setHtmlName(props.name);
-              }}
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
+          {isActiveFrame && (
+            <Html
+              // style={contentStyle}
+              className="content-embed"
+              portal={portal}
+              scale={0.1}
+              transform
+              sprite
             >
-              {ComponentToRender && (
-                <ComponentToRender
-                  onHover={setHovered}
-                  setClicked={setClicked}
-                  frameRef={frameRef}
-                />
-              )}
-            </div>
-            {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
-          </Html>
+              <div
+                className="wrapper"
+                // onPointerDown={(e) => e.stopPropagation()}
+                name={props.name}
+                onClick={() => {
+                  setHtmlClick((prev) => !prev);
+                  setHtmlName(props.name);
+                }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                }}
+              >
+                {ComponentToRender && (
+                  <ComponentToRender
+                    onHover={setHovered}
+                    setClicked={setClicked}
+                    frameRef={frameRef}
+                  />
+                )}
+              </div>
+              {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
+            </Html>
+          )}
         </mesh>
         <mesh
           onClick={() => {
