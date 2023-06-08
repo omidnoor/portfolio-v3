@@ -57,7 +57,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
             height={0.09}
           >
             Creative Web Developer & Designer
-            <meshMatcapMaterial matcap={matcapTexture1} toneMapped={false} />
+            <meshMatcapMaterial matcap={matcapTexture1} />
           </Text3D>
         </Float>
       </Center>

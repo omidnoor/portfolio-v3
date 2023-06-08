@@ -5,6 +5,7 @@ import { Suspense, useRef } from "react";
 import Welcome from "@/components/3d/Welcome";
 import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
 import { Sand_Color } from "@/components/utilComponents/variables/colors";
+import Cursor from "@/components/utilComponents/UI/Cursor";
 
 const pages = [
   {
@@ -52,6 +53,8 @@ const HomePage = () => {
           height: "100%",
           overflow: "hidden",
           cursor: "pointer",
+          padding: 0,
+          margin: 0,
         }}
         ref={domContentRef}
       />
@@ -79,6 +82,7 @@ const HomePage = () => {
           </group>
         </Suspense>
       </Layout>
+      {/* <Cursor /> */}
     </>
   );
 };

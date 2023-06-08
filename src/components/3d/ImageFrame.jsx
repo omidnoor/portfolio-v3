@@ -56,11 +56,6 @@ const ImageFrame = ({
   });
   console.log();
   useEffect(() => {
-    console.log(
-      activeFrame.name === props.name
-        ? `${props.name} is active`
-        : `${props.name} is not active`,
-    );
     if (activeFrame.name === props.name) {
       setIsActiveFrame(true);
     } else {
@@ -95,7 +90,7 @@ const ImageFrame = ({
           metalness={0.5}
           roughness={0.5}
           envMapIntensity={2}
-          toneMapped={false}
+          // toneMapped={false}
         />
         <mesh
           ref={frameRef}
@@ -105,17 +100,24 @@ const ImageFrame = ({
         >
           <boxGeometry />
           <meshBasicMaterial fog={false} />
-          {!isActiveFrame && (
+          {/* {!isActiveFrame && (
             <Image
               url={props.url}
               raycast={() => null}
               position={[0, 0, 0.7]}
             />
-          )}
-          {isActiveFrame && (
+          )} */}
+          {true && (
             <Html
               // style={contentStyle}
               className="content-embed"
+              style={{
+                width: "100%",
+                height: "100%",
+                padding: 0,
+                margin: 0,
+                backgroundColor: Deep_Blue,
+              }}
               portal={portal}
               scale={0.1}
               transform
@@ -135,6 +137,8 @@ const ImageFrame = ({
                   // ...style,
                   width: "100%",
                   height: "100%",
+                  padding: 0,
+                  margin: 0,
                 }}
               >
                 {ComponentToRender && (

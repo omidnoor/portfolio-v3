@@ -1,0 +1,15 @@
+// body {
+//   cursor: none; /* Hide the default cursor */
+// }
+
+.cursor {
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none; /* Ignore events like hover, click etc. */
+  //   transition: all 0.2s ease; /* Smoother movement */
+  z-index: 9999; /* Ensure the custom cursor is on top */
+}
