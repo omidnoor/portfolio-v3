@@ -4,12 +4,11 @@ import { useFrame } from "@react-three/fiber";
 import { dampC } from "maath/easing";
 import { useEffect, useRef, useState } from "react";
 import { Color } from "three";
-
 import Home from "@/components/pageComponents/home/Home";
 import AboutMe from "../pageComponents/aboutMe/AboutMe";
 import { memo } from "react";
 import { Deep_Blue } from "../utilComponents/variables/colors";
-// import { useTransition, animated } from "react-spring";
+import { useTransition, animated } from "react-spring";
 
 const componentMapping = {
   Home: Home,
@@ -63,12 +62,12 @@ const ImageFrame = ({
     }
   }, [activeFrame]);
 
-  // const transitions = useTransition(isActiveFrame, {
-  //   from: { opacity: 0 },
-  //   enter: { opacity: 1 },
-  //   // leave: { opacity: 0 },
-  //   config: { tension: 100, friction: 50 },
-  // });
+  const transitions = useTransition(isActiveFrame, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    // leave: { opacity: 0 },
+    config: { tension: 200, friction: 200 },
+  });
 
   useCursor(hovered);
 
@@ -116,41 +115,45 @@ const ImageFrame = ({
                 height: "100%",
                 padding: 0,
                 margin: 0,
-                backgroundColor: Deep_Blue,
               }}
               portal={portal}
               scale={0.1}
               transform
               sprite
             >
-              {/* {transitions((style, item) => ( */}
-              {/* <animated.div */}
-              <div
-                className="wrapper"
-                // onPointerDown={(e) => e.stopPropagation()}
-                name={props.name}
-                onClick={() => {
-                  setHtmlClick((prev) => !prev);
-                  setHtmlName(props.name);
-                }}
-                style={{
-                  // ...style,
-                  width: "100%",
-                  height: "100%",
-                  padding: 0,
-                  margin: 0,
-                }}
-              >
-                {ComponentToRender && (
-                  <ComponentToRender
-                    onHover={setHovered}
-                    setClicked={setClicked}
-                    frameRef={frameRef}
-                  />
-                )}
-              </div>
-              {/* </animated.div> */}
-              {/* ))} */}
+              {transitions((style, item) =>
+                item ? (
+                  <animated.div
+                    // <div
+                    className="wrapper"
+                    // onPointerDown={(e) => e.stopPropagation()}
+                    name={props.name}
+                    onClick={() => {
+                      setHtmlClick((prev) => !prev);
+                      setHtmlName(props.name);
+                    }}
+                    style={{
+                      ...style,
+                      width: "522px",
+                      height: "615px",
+                      padding: 0,
+                      margin: 0,
+                      backgroundColor: Deep_Blue,
+                      transform: "rotateZ(-45deg)",
+                      transform: "rotateY(-45deg)",
+                    }}
+                  >
+                    {ComponentToRender && (
+                      <ComponentToRender
+                        onHover={setHovered}
+                        setClicked={setClicked}
+                        frameRef={frameRef}
+                      />
+                    )}
+                    {/* </div> */}
+                  </animated.div>
+                ) : null,
+              )}
               {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
             </Html>
           )}

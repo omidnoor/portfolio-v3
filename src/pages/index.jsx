@@ -54,7 +54,6 @@ const HomePage = () => {
           overflow: "hidden",
           cursor: "pointer",
           padding: 0,
-          margin: 0,
         }}
         ref={domContentRef}
       />

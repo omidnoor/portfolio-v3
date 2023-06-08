@@ -52,7 +52,7 @@ const ImageFrames = ({
     if (activeFrame.name && framesRef.current) {
       const frame = framesRef.current.getObjectByName(activeFrame.name);
       frame.updateWorldMatrix(true, true);
-      frame.localToWorld(targetPosition.set(0, GOLDENRATIO * 0, 20));
+      frame.localToWorld(targetPosition.set(0, GOLDENRATIO * 0, 22));
       frame.getWorldQuaternion(targetQuaternion);
     } else {
       targetPosition.set(0, 0, 5.5);
