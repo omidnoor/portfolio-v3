@@ -6,6 +6,9 @@ import Welcome from "@/components/3d/Welcome";
 import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
 import { Sand_Color } from "@/components/utilComponents/variables/colors";
 import Cursor from "@/components/utilComponents/UI/Cursor";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"] });
 
 const pages = [
   {
@@ -55,12 +58,12 @@ const HomePage = () => {
           cursor: "pointer",
           padding: 0,
         }}
+        className={inter.className}
         ref={domContentRef}
       />
       <Layout>
         <Suspense fallback={<CustomLoader />}>
           <group position={[0, -0.9, 0]}>
-            <Welcome position={[0, 3, 0]} />
             <ImageFrames pages={pages} portal={domContentRef} />
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
               <planeGeometry args={[50, 50]} />
@@ -79,6 +82,7 @@ const HomePage = () => {
             </mesh>
             {/* <Environment preset="city" /> */}
           </group>
+          <Welcome position={[0, 3, 0]} />
         </Suspense>
       </Layout>
       {/* <Cursor /> */}

@@ -44,6 +44,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--gap-xl);
+  color: #fff;
   &__socials {
     margin-bottom: var(--gap-sm);
     display: flex;
@@ -58,7 +59,7 @@
     width: 100%;
 
     h2 {
-      font-size: var(--text-size-lg);
+      font-size: var(--text-size-xxl);
       display: flex;
       justify-content: center;
       span {

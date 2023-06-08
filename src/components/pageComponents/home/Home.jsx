@@ -6,10 +6,7 @@ import { Deep_Blue } from "@/components/utilComponents/variables/colors";
 
 const Home = ({ onHover }) => {
   return (
-    <div
-      className={`${styles.homeSection}`}
-      style={{ backgroundColor: Deep_Blue }}
-    >
+    <div className={`${styles.homeSection}`}>
       <HomeCard />
       {/* <HomeImage /> */}
     </div>
