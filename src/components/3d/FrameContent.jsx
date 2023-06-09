@@ -16,6 +16,7 @@ const FrameContent = ({ props, frameRef }) => {
   const activeFrame = useStore((state) => state.activeFrame);
   const portal = useStore((state) => state.portal);
   const setHtmlName = useStore((state) => state.setHtmlName);
+  const setHtmlClicked = useStore((state) => state.setHtmlClicked);
 
   const ComponentToRender = componentMapping[props.name];
   const transitions = useTransition(isActiveFrame, {
@@ -43,7 +44,7 @@ const FrameContent = ({ props, frameRef }) => {
               // onPointerDown={(e) => e.stopPropagation()}
               name={props.name}
               onClick={() => {
-                setHtmlClick((prev) => !prev);
+                setHtmlClicked((prev) => !prev);
                 setHtmlName(props.name);
               }}
               style={{

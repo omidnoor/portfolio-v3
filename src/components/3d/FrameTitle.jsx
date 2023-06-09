@@ -2,13 +2,13 @@ import { Center, Text3D } from "@react-three/drei";
 import { Deep_Blue } from "../utilComponents/variables/colors";
 import { useStore } from "@/stores/store";
 
-const FrameTitle = (props) => {
-  const setHtmlClick = useStore((state) => state.setHtmlClick);
+const FrameTitle = ({ props }) => {
+  const setHtmlClicked = useStore((state) => state.setHtmlClicked);
   const setHtmlName = useStore((state) => state.setHtmlName);
   return (
     <mesh
       onClick={() => {
-        setHtmlClick((prev) => !prev);
+        setHtmlClicked((prev) => !prev);
         setHtmlName(props.name);
       }}
     >

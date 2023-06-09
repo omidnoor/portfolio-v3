@@ -18,10 +18,10 @@ const ImageFrames = ({
 }) => {
   const [frameEventName, _] = useState(null);
   const [pagesName, setPagesName] = useState([]);
-  const [htmlClicked, setHtmlClicked] = useState(false);
 
   const framesRef = useRef({});
 
+  const htmlClicked = useStore((state) => state.htmlClicked);
   const activeFrame = useStore((state) => state.activeFrame);
   const setActiveFrame = useStore((state) => state.setActiveFrame);
   const setFrameEventName = useStore((state) => state.setFrameEventName);
@@ -76,7 +76,6 @@ const ImageFrames = ({
           targetPosition={targetPosition}
           setActiveFrame={setActiveFrame}
           handleClick={handleClick}
-          setHtmlClicked={setHtmlClicked}
           {...props}
         />
       ))}

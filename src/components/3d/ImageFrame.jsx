@@ -23,7 +23,6 @@ const ImageFrame = ({
   targetPosition,
   setActiveFrame,
   handleClick,
-  setHtmlClick,
   ...props
 }) => {
   const [hovered, setHovered] = useState(false);
@@ -84,7 +83,7 @@ const ImageFrame = ({
           )} */}
           {true && <FrameContent props={...props} frameRef={frameRef} />}
         </mesh>
-        <FrameTitle />
+        <FrameTitle props={...props} />
       </mesh>
     </group>
   );
