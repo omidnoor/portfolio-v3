@@ -1,19 +1,15 @@
+import React from "react";
 import { useStore } from "@/stores/store";
 import { Center, Html, Image, Text3D, useCursor } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { dampC } from "maath/easing";
 import { useEffect, useRef, useState } from "react";
 import { Color } from "three";
-import Home from "@/components/pageComponents/home/Home";
-import AboutMe from "../pageComponents/aboutMe/AboutMe";
 import { memo } from "react";
 import { Deep_Blue } from "../utilComponents/variables/colors";
-import { useTransition, animated } from "react-spring";
+import FrameContent from "./FrameContent";
+import FrameTitle from "./FrameTitle";
 
-const componentMapping = {
-  Home: Home,
-  AboutMe: AboutMe,
-};
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -24,25 +20,19 @@ const innerPosition = [0, 0, 0.2];
 
 const ImageFrame = ({
   c = new Color(),
-  portal,
-  setClicked,
   targetPosition,
-  targetQuaternion,
-  activeFrame,
   setActiveFrame,
   handleClick,
-  transparentFrameRef,
   setHtmlClick,
-  setHtmlName,
-  pagesName,
   ...props
 }) => {
   const [hovered, setHovered] = useState(false);
   const [isActiveFrame, setIsActiveFrame] = useState(false);
+
   const frameRef = useRef(null);
 
   const setFrameEventName = useStore((state) => state.setFrameEventName);
-  const ComponentToRender = componentMapping[props.name];
+  const setHtmlName = useStore((state) => state.setHtmlName);
 
   useFrame((state, delta) => {
     if (!frameRef.current) return;
@@ -53,21 +43,7 @@ const ImageFrame = ({
       delta,
     );
   });
-  console.log();
-  useEffect(() => {
-    if (activeFrame.name === props.name) {
-      setIsActiveFrame(true);
-    } else {
-      setIsActiveFrame(false);
-    }
-  }, [activeFrame]);
 
-  const transitions = useTransition(isActiveFrame, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    // leave: { opacity: 0 },
-    config: { tension: 200, friction: 200 },
-  });
 
   useCursor(hovered);
 
@@ -98,7 +74,7 @@ const ImageFrame = ({
           position={innerPosition}
         >
           <boxGeometry />
-          <meshBasicMaterial fog={false} />
+          <meshStandardMaterial fog={false} />
           {/* {!isActiveFrame && (
             <Image
               url={props.url}
@@ -106,76 +82,9 @@ const ImageFrame = ({
               position={[0, 0, 0.7]}
             />
           )} */}
-          {true && (
-            <Html
-              // style={contentStyle}
-              className="content-embed"
-              style={{
-                width: "100%",
-                height: "100%",
-                padding: 0,
-                margin: 0,
-              }}
-              portal={portal}
-              scale={0.1}
-              transform
-              sprite
-            >
-              {transitions((style, item) =>
-                item ? (
-                  <animated.div
-                    // <div
-                    className="wrapper"
-                    // onPointerDown={(e) => e.stopPropagation()}
-                    name={props.name}
-                    onClick={() => {
-                      setHtmlClick((prev) => !prev);
-                      setHtmlName(props.name);
-                    }}
-                    style={{
-                      ...style,
-                      width: "522px",
-                      height: "615px",
-                      padding: 0,
-                      margin: 0,
-                      backgroundColor: Deep_Blue,
-                      transform: "rotateZ(-45deg)",
-                      transform: "rotateY(-45deg)",
-                    }}
-                  >
-                    {ComponentToRender && (
-                      <ComponentToRender
-                        onHover={setHovered}
-                        setClicked={setClicked}
-                        frameRef={frameRef}
-                      />
-                    )}
-                    {/* </div> */}
-                  </animated.div>
-                ) : null,
-              )}
-              {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
-            </Html>
-          )}
+          {true && <FrameContent props={...props} frameRef={frameRef} />}
         </mesh>
-        <mesh
-          onClick={() => {
-            setHtmlClick((prev) => !prev);
-            setHtmlName(props.name);
-          }}
-        >
-          <Center position={[0, 0.6, 0]}>
-            <Text3D
-              font="/Inter_Bold.json"
-              letterSpacing={-0.0}
-              size={0.1}
-              height={0.1}
-            >
-              {props.name}
-              <meshBasicMaterial toneMapped={false} color={Deep_Blue} />
-            </Text3D>
-          </Center>
-        </mesh>
+        <FrameTitle />
       </mesh>
     </group>
   );

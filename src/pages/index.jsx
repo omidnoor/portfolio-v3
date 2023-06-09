@@ -7,6 +7,7 @@ import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
 import { Sand_Color } from "@/components/utilComponents/variables/colors";
 import Cursor from "@/components/utilComponents/UI/Cursor";
 import { Inter } from "next/font/google";
+import { useStore } from "@/stores/store";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,6 +45,7 @@ const pages = [
 ];
 const HomePage = () => {
   const domContentRef = useRef(null);
+  const portal = useStore((state) => state.portal);
   const container = useRef(null);
   return (
     <>
@@ -64,7 +66,7 @@ const HomePage = () => {
       <Layout>
         <Suspense fallback={<CustomLoader />}>
           <group position={[0, -0.9, 0]}>
-            <ImageFrames pages={pages} portal={domContentRef} />
+            <ImageFrames pages={pages} portal={portal} />
             <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
               <planeGeometry args={[50, 50]} />
               <MeshReflectorMaterial

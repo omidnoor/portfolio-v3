@@ -16,18 +16,16 @@ const ImageFrames = ({
   targetPosition = new Vector3(),
   targetQuaternion = new Quaternion(),
 }) => {
-  const [clicked, setClicked] = useState(false);
   const [frameEventName, _] = useState(null);
-  const [htmlClick, setHtmlClick] = useState(false);
-  const [htmlName, setHtmlName] = useState(null);
   const [pagesName, setPagesName] = useState([]);
+  const [htmlClicked, setHtmlClicked] = useState(false);
 
   const framesRef = useRef({});
-  const transparentFrameRef = useRef(null);
 
   const activeFrame = useStore((state) => state.activeFrame);
   const setActiveFrame = useStore((state) => state.setActiveFrame);
   const setFrameEventName = useStore((state) => state.setFrameEventName);
+  const htmlName = useStore((state) => state.htmlName);
 
   useEffect(() => {
     pages.map((page) => {
@@ -38,14 +36,13 @@ const ImageFrames = ({
   const handleClick = useCallback(
     (event) => {
       // event.stopPropagation();
-      setClicked(true);
       if (event.object && framesRef.current) {
         const frameName = event.object.name;
         setActiveFrame({ name: frameName });
         setFrameEventName(frameName);
       }
     },
-    [clicked, framesRef, setActiveFrame, setFrameEventName],
+    [framesRef, setActiveFrame, setFrameEventName],
   );
 
   useEffect(() => {
@@ -67,7 +64,7 @@ const ImageFrames = ({
 
   useEffect(() => {
     setActiveFrame({ name: htmlName });
-  }, [htmlClick]);
+  }, [htmlClicked]);
 
   return (
     <group ref={framesRef} onClick={handleClick}>
@@ -75,17 +72,11 @@ const ImageFrames = ({
         <ImageFrame
           key={props.name}
           portal={portal}
-          setClicked={setClicked}
           frameEventName={frameEventName}
           targetPosition={targetPosition}
-          targetQuaternion={targetQuaternion}
           setActiveFrame={setActiveFrame}
-          activeFrame={activeFrame}
-          transparentFrameRef={transparentFrameRef}
           handleClick={handleClick}
-          setHtmlClick={setHtmlClick}
-          setHtmlName={setHtmlName}
-          pagesName={pagesName}
+          setHtmlClicked={setHtmlClicked}
           {...props}
         />
       ))}

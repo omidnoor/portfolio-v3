@@ -3,14 +3,22 @@ import { create } from "zustand";
 export const useStore = create((set) => ({
   activeFrame: { name: "" },
   frameEvent: null,
-  // frameUuids: [],
-  // frameUuid: null,
+  portal: null,
+  htmlName: "",
+  isActiveFrame: false,
+  htmlClicked: false,
+
+  setHtmlName: (htmlName) => set((state) => ({ ...state, htmlName })),
+
   setActiveFrame: (frame) => set((state) => ({ ...state, activeFrame: frame })),
 
   setFrameEventName: (eventName) =>
     set((state) => ({ ...state, frameEventName: eventName })),
-  // addFrameUuid: (
-  //   uuid, // Function to add a UUID to frameUuids array
-  // ) => set((state) => ({ ...state, frameUuids: [...state.frameUuids, uuid] })),
-  // setFrameUuid: (uuid) => set((state) => ({ ...state, frameUuid: uuid })),
+
+  setIsaActiveFrame: (isActive) => ({
+    ...state,
+    isActiveFrame: isActive,
+  }),
+
+  setHtmlClicked: (htmlClicked) => set((state) => ({ ...state, htmlClicked })),
 }));

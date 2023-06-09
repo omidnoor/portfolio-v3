@@ -3,13 +3,14 @@ import HomeCard from "../home/HomeCard";
 import HomeImage from "../home/HomeImage";
 import Image from "next/image";
 import { Deep_Blue } from "@/components/utilComponents/variables/colors";
+import { memo } from "react";
 
-const Home = ({ onHover }) => {
+const Home = () => {
   return (
     <div className={`${styles.homeSection}`}>
       <HomeCard />
-      {/* <HomeImage /> */}
+      <HomeImage />
     </div>
   );
 };
-export default Home;
+export default memo(Home);

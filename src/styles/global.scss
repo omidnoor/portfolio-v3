@@ -1,165 +1,3 @@
-$max-width: 1100px;
-$border-radius: 12px;
-$gap: (
-  sm: 5px,
-  md: 10px,
-  lg: 20px,
-  xl: 32px,
-  xxl: 48px,
-  xxxl: 56px,
-);
-$m: (
-  sm: 5px,
-  md: 10px,
-  lg: 20px,
-  xl: 32px,
-  xxl: 48px,
-  xxxl: 60px,
-);
-$p: (
-  sm: 5px,
-  md: 10px,
-  lg: 20px,
-  xl: 32px,
-  xxl: 48px,
-  xxxl: 64px,
-);
-$icon-size: (
-  sm: 16px,
-  md: 18px,
-  lg: 24px,
-  xl: 32px,
-);
-$text-size: (
-  sm: 12px,
-  md: 16px,
-  lg: 20px,
-  xl: 24px,
-  xxl: 32px,
-  xxxl: 36px,
-);
-$screen: (
-  sm: 360px,
-  md: 640px,
-  lg: 960px,
-  xl: 1200px,
-  xxl: 1400px,
-  xxxl: 1600px,
-);
-
-$font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono",
-  "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro",
-  "Fira Mono", "Droid Sans Mono", "Courier New", monospace;
-
-$foreground-rgb: 0, 0, 0;
-$background-start-rgb: 214, 219, 220;
-$background-end-rgb: 255, 255, 255;
-
-$primary-accent-color: #efffa6;
-$secondary-accent-color: #ffc400;
-$primary-glow: conic-gradient(
-  from 180deg at 50% 50%,
-  #16abff33 0deg,
-  #0885ff33 55deg,
-  #54d6ff33 120deg,
-  #0071ff33 160deg,
-  transparent 360deg
-);
-$secondary-glow: radial-gradient(
-  rgba(255, 255, 255, 1),
-  rgba(255, 255, 255, 0)
-);
-
-$tertiary-glow: radial-gradient(
-  from 180deg at 50% 50%,
-  #16abff33 0deg,
-  #0885ff33 55deg,
-  #54d6ff33 120deg,
-  #0071ff33 160deg,
-  transparent 360deg
-);
-
-$tile-start-rgb: 239, 245, 249;
-$tile-end-rgb: 228, 232, 233;
-$tile-border: conic-gradient(
-  #00000080,
-  #00000040,
-  #00000030,
-  #00000020,
-  #00000010,
-  #00000010,
-  #00000080
-);
-
-$callout-rgb: 238, 240, 241;
-$callout-border-rgb: 172, 175, 176;
-$card-rgb: 180, 185, 188;
-$card-border-rgb: 131, 134, 135;
-
-@media (prefers-color-scheme: dark) {
-  $foreground-rgb: 255, 255, 255;
-  $background-start-rgb: 0, 0, 0;
-  $background-end-rgb: 0, 0, 0;
-
-  $primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-  $secondary-glow: linear-gradient(
-    to bottom right,
-    rgba(1, 65, 255, 0),
-    rgba(1, 65, 255, 0),
-    rgba(1, 65, 255, 0.3)
-  );
-
-  $tile-start-rgb: 2, 13, 46;
-  $tile-end-rgb: 2, 5, 19;
-  $tile-border: conic-gradient(
-    #ffffff80,
-    #ffffff40,
-    #ffffff30,
-    #ffffff20,
-    #ffffff10,
-    #ffffff10,
-    #ffffff80
-  );
-
-  $callout-rgb: 20, 20, 20;
-  $callout-border-rgb: 108, 108, 108;
-  $card-rgb: 100, 100, 100;
-  $card-border-rgb: 200, 200, 200;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html,
-body {
-  max-width: 100%;
-  overflow: visible;
-}
-
-// body {
-//   color: rgb($foreground-rgb...);
-//   background: linear-gradient(
-//       to bottom,
-//       transparent,
-//       rgb($background-end-rgb...)
-//     )
-//     rgb($background-start-rgb...);
-// }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-// @media (prefers-color-scheme: dark) {
-//   html {
-//     color-scheme: dark;
-//   }
-// }
-
 $bp-sm: 480px;
 $bp-md: 640px;
 $bp-lg: 740px;
@@ -174,7 +12,71 @@ $h-xl: 3rem;
 
 $btn-primary-color: #ffc400;
 $md-dark-blue: rgba(1, 65, 255, 0.4);
-$md-light-blue: rgba(167, 167, 242, 0.4);
+
+.blueGlow::before {
+  background: var(--secondary-glow);
+  border-radius: 50%;
+  width: 380px;
+  height: 380px;
+  // margin-left: -400px;
+}
+
+.blueGlow::after {
+  background: var(--primary-glow);
+  width: 380px;
+  height: 380px;
+  z-index: -1;
+}
+
+.blueGlow::before,
+.blueGlow::after {
+  content: "";
+  left: 57%;
+  position: absolute;
+  filter: blur(45px);
+  transform: translateZ(0);
+}
+
+@mixin responsive-font(
+  $min-font-size,
+  $max-font-size,
+  $min-viewport,
+  $max-viewport
+) {
+  // Calculate the font scaling factors
+  $font-size-diff: $max-font-size - $min-font-size;
+  $viewport-diff: $max-viewport - $min-viewport;
+  $font-scaling-factor: $font-size-diff / $viewport-diff;
+
+  // Set the base font size
+  font-size: $min-font-size;
+
+  // Set the font size for the minimum viewport size
+  @media (min-width: $min-viewport) {
+    font-size: calc(
+      #{$min-font-size} + #{$font-scaling-factor} * (100vw - #{$min-viewport}px)
+    );
+  }
+
+  // Set the font size for the maximum viewport size
+  @media (min-width: $max-viewport) {
+    font-size: $max-font-size;
+  }
+}
+$bp-sm: 480px;
+$bp-md: 640px;
+$bp-lg: 740px;
+$bp-xl: 960px;
+$bp-xxl: 1200px;
+$bp-xxxl: 1400px;
+
+$h-sm: 1rem;
+$h-md: 1.25rem;
+$h-lg: 2rem;
+$h-xl: 3rem;
+
+$btn-primary-color: #ffc400;
+$md-dark-blue: rgba(1, 65, 255, 0.4);
 
 .blueGlow::before {
   background: var(--secondary-glow);
