@@ -6,7 +6,6 @@ import { Html, useCursor } from "@react-three/drei";
 import { useStore } from "@/stores/store";
 import { Deep_Blue } from "../utilComponents/variables/colors";
 import FrameTitle from "./FrameTitle";
-import TransparentPad from "./TransparentPad";
 
 const componentMapping = {
   Home: React.lazy(() => import("../pageComponents/home/Home")),

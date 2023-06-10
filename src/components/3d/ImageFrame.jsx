@@ -9,7 +9,7 @@ import { memo } from "react";
 import { Deep_Blue } from "../utilComponents/variables/colors";
 import FrameContent from "./FrameContent";
 import FrameTitle from "./FrameTitle";
-import TransparentPad from "./TransparentPad";
+import TitlePlate from "./TitlePlate";
 
 
 const GOLDENRATIO = 1.61803398875;
@@ -56,7 +56,7 @@ const ImageFrame = ({
           position={innerPosition}
         >
           <boxGeometry />
-          <meshStandardMaterial fog={false} />
+          <meshStandardMaterial fog={false} color={Deep_Blue} />
           {/* {!isActiveFrame && (
             <Image
               url={props.url}
@@ -66,7 +66,7 @@ const ImageFrame = ({
           )} */}
           {true && <FrameContent props={...props}/>}
           <FrameTitle props={...props}/>
-          <TransparentPad props={...props} setTitle={setTitle} />
+          <TitlePlate props={...props} setTitle={setTitle} />
         </mesh>
       </mesh>
     </group>

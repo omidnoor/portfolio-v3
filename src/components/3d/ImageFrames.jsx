@@ -4,11 +4,8 @@ import { Quaternion, Vector3 } from "three";
 import { useFrame } from "@react-three/fiber";
 import { damp3, dampQ } from "maath/easing";
 import { useStore } from "@/stores/store";
-import { useCursor } from "@react-three/drei";
 import { useCallback } from "react";
 import { memo } from "react";
-import FrameTitle from "./FrameTitle";
-import TransparentPad from "./TransparentPad";
 
 const GOLDENRATIO = 1.61803398875;
 

@@ -1,7 +1,7 @@
 import { Center, Text3D } from "@react-three/drei";
 import { Sand_Color } from "../utilComponents/variables/colors";
 
-const FrameTitle = ({ props, setTitle }) => {
+const FrameTitle = ({ props }) => {
   return (
     <mesh>
       <Center position={[0, 0.65, 0]}>
