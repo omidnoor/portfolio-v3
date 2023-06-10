@@ -9,6 +9,7 @@ import { memo } from "react";
 import { Deep_Blue } from "../utilComponents/variables/colors";
 import FrameContent from "./FrameContent";
 import FrameTitle from "./FrameTitle";
+import TransparentPad from "./TransparentPad";
 
 
 const GOLDENRATIO = 1.61803398875;
@@ -21,42 +22,25 @@ const innerPosition = [0, 0, 0.2];
 const ImageFrame = ({
   c = new Color(),
   targetPosition,
-  setActiveFrame,
-  handleClick,
   ...props
 }) => {
-  const [hovered, setHovered] = useState(false);
-  const [isActiveFrame, setIsActiveFrame] = useState(false);
-
   const frameRef = useRef(null);
 
-  const setFrameEventName = useStore((state) => state.setFrameEventName);
-  const setHtmlName = useStore((state) => state.setHtmlName);
+  const setActiveFrame = useStore((state) => state.setActiveFrame);
+  const activeFrame = useStore((state) => state.activeFrame);
+  const setHoverThree = useStore((state) => state.setHoverThree);
+  const hoverThree = useStore((state) => state.hoverThree);
+  const hoverHtml = useStore((state) => state.hoverHtml);
 
-  useFrame((state, delta) => {
-    if (!frameRef.current) return;
-    dampC(
-      frameRef.current?.material?.color,
-      hovered ? [1, 0.8, 0.9] : [1, 1, 1],
-      0.1,
-      delta,
-    );
-  });
-
-
-  useCursor(hovered);
+  useCursor(hoverThree || hoverHtml);
 
   return (
     <group
-      onPointerOver={(event) => {
-        setFrameEventName(event.object.name);
-        setHovered(true);
-      }}
-      onPointerOut={(e) => {
-        setHovered(false);
-      }}
       onPointerMissed={() => setActiveFrame({ name: "" })}
+      onPointerEnter={()=>setHoverThree(true)}
+      onPointerLeave={() => setHoverThree(false)}
     >
+      {/* {console.log('Frame name: ', props.name)} */}
       <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
         <meshBasicMaterial
@@ -68,7 +52,7 @@ const ImageFrame = ({
         />
         <mesh
           ref={frameRef}
-          raycast={() => null}
+          // raycast={() => null}
           scale={innerScale}
           position={innerPosition}
         >
@@ -81,7 +65,7 @@ const ImageFrame = ({
               position={[0, 0, 0.7]}
             />
           )} */}
-          {true && <FrameContent props={...props} frameRef={frameRef} />}
+          {true && <FrameContent props={...props}/>}
         </mesh>
         <FrameTitle props={...props} />
       </mesh>

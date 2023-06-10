@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <div className={`${styles.homeSection}`}>
       <HomeCard />
-      <HomeImage />
+      {/* <HomeImage /> */}
     </div>
   );
 };

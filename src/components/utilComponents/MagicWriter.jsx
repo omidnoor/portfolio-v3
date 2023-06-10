@@ -26,10 +26,10 @@ const MagicWriter = ({ text1, icon1, text2, icon2 }) => {
       {textToShow}
       {textToShow === texts[0] ? (
         <>
-          <TbBrandNextjs
+          {/* <TbBrandNextjs
             style={{ color: "rgba(1, 200, 255)", height: "30px" }}
           />
-          <FaReact style={{ color: "rgba(1, 200, 255)", height: "30px" }} />
+          <FaReact style={{ color: "rgba(1, 200, 255)", height: "30px" }} /> */}
         </>
       ) : (
         ""

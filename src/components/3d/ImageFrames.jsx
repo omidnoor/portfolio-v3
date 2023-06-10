@@ -26,6 +26,8 @@ const ImageFrames = ({
   const setActiveFrame = useStore((state) => state.setActiveFrame);
   const setFrameEventName = useStore((state) => state.setFrameEventName);
   const htmlName = useStore((state) => state.htmlName);
+  const isLetsTalk = useStore((state) => state.isLetsTalk);
+  const setIsLetsTalk = useStore((state) => state.setIsLetsTalk);
 
   useEffect(() => {
     pages.map((page) => {
@@ -38,14 +40,17 @@ const ImageFrames = ({
       // event.stopPropagation();
       if (event.object && framesRef.current) {
         const frameName = event.object.name;
+        // setFrameEventName(frameName);
+        // isLetsTalk && setActiveFrame({ name: "ContactMe" });
+        // !isLetsTalk && setActiveFrame({ name: frameName });
         setActiveFrame({ name: frameName });
-        setFrameEventName(frameName);
       }
     },
-    [framesRef, setActiveFrame, setFrameEventName],
+    [framesRef, activeFrame.name, isLetsTalk],
   );
-
+  // console.log(activeFrame);
   useEffect(() => {
+    // console.log("useEffect triggered, activeFrame: ", activeFrame);
     if (activeFrame.name && framesRef.current) {
       const frame = framesRef.current.getObjectByName(activeFrame.name);
       frame.updateWorldMatrix(true, true);
@@ -62,22 +67,14 @@ const ImageFrames = ({
     dampQ(state.camera.quaternion, targetQuaternion, 0.4, delta);
   });
 
-  useEffect(() => {
-    setActiveFrame({ name: htmlName });
-  }, [htmlClicked]);
+  // useEffect(() => {
+  //   setActiveFrame({ name: htmlName });
+  // }, [htmlClicked]);
 
   return (
     <group ref={framesRef} onClick={handleClick}>
       {pages?.map((props, index) => (
-        <ImageFrame
-          key={props.name}
-          portal={portal}
-          frameEventName={frameEventName}
-          targetPosition={targetPosition}
-          setActiveFrame={setActiveFrame}
-          handleClick={handleClick}
-          {...props}
-        />
+        <ImageFrame key={props.name} portal={portal} {...props} />
       ))}
     </group>
   );

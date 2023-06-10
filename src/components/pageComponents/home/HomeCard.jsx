@@ -9,19 +9,19 @@ export default function HomeCard() {
     <div className={styles.HomeCard}>
       <div className={styles.HomeCard__intro}>
         <h2>
-          Hello I'm &nbsp;<span>Omid</span>
+          Hi, my name &nbsp;<span>Omid</span>
         </h2>
-        {/* <div className={styles.HomeCard__intro__skills}>
+        <div className={styles.HomeCard__intro__skills}>
           <h1>
             <MagicWriter text1="Next/React Dev" text2="Cross Platform Dev" />
           </h1>
-        </div> */}
+        </div>
         <p> front end and backend operations</p>
       </div>
-      {/* <div className={styles.HomeCard__actions}>
+      <div className={styles.HomeCard__actions}>
         <ButtonUI type="primary">let's talk</ButtonUI>
         <ButtonUI type="secondary">Resume</ButtonUI>
-      </div> */}
+      </div>
       <div className={styles.HomeCard__socials}>
         <FaFacebookSquare />
         <ImLinkedin />

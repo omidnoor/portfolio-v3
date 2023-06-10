@@ -2,27 +2,31 @@ import React, { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 
 import styles from "./content-embed.module.scss";
-import { Html } from "@react-three/drei";
+import { Html, useCursor } from "@react-three/drei";
 import { useStore } from "@/stores/store";
 import { Deep_Blue } from "../utilComponents/variables/colors";
 
 const componentMapping = {
   Home: React.lazy(() => import("../pageComponents/home/Home")),
   AboutMe: React.lazy(() => import("../pageComponents/aboutMe/AboutMe")),
+  ContactMe: React.lazy(() => import("../pageComponents/contactMe/ContactMe")),
 };
 
-const FrameContent = ({ props, frameRef }) => {
+const FrameContent = ({ props }) => {
   const [isActiveFrame, setIsActiveFrame] = useState(false);
+
   const activeFrame = useStore((state) => state.activeFrame);
   const portal = useStore((state) => state.portal);
   const setHtmlName = useStore((state) => state.setHtmlName);
+  const htmlName = useStore((state) => state.htmlName);
   const setHtmlClicked = useStore((state) => state.setHtmlClicked);
-
+  const setHoverHtml = useStore((state) => state.setHoverHtml);
+  console.log(htmlName);
   const ComponentToRender = componentMapping[props.name];
   const transitions = useTransition(isActiveFrame, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
-    config: { tension: 200, friction: 200 },
+    config: { tension: 10, friction: 10 },
   });
 
   useEffect(() => {
@@ -43,19 +47,25 @@ const FrameContent = ({ props, frameRef }) => {
               className={styles.main}
               // onPointerDown={(e) => e.stopPropagation()}
               name={props.name}
-              onClick={() => {
-                setHtmlClicked((prev) => !prev);
-                setHtmlName(props.name);
+              onClick={(event) => {
+                event.stopPropagation();
+                // setHtmlClicked((prev) => !prev);
+                setHtmlName(activeFrame.name);
+                // console.log(e);
+              }}
+              onMouseEnter={() => {
+                setHoverHtml(true);
+              }}
+              onMouseLeave={() => {
+                setHoverHtml(false);
               }}
               style={{
                 ...style,
-                width: "522px",
-                height: "615px",
+                width: "370px",
+                height: "617px",
                 padding: 0,
                 margin: 0,
                 backgroundColor: Deep_Blue,
-                transform: "rotateZ(-45deg)",
-                transform: "rotateY(-45deg)",
               }}
             >
               {ComponentToRender && <ComponentToRender />}

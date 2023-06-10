@@ -4,12 +4,16 @@ import { useStore } from "@/stores/store";
 
 const FrameTitle = ({ props }) => {
   const setHtmlClicked = useStore((state) => state.setHtmlClicked);
-  const setHtmlName = useStore((state) => state.setHtmlName);
+  const setActiveFrame = useStore((state) => state.setActiveFrame);
+  const activeFrame = useStore((state) => state.activeFrame);
+  // const setHtmlName = useStore((state) => state.setHtmlName);
+  // console.log(activeFrame);
   return (
     <mesh
       onClick={() => {
-        setHtmlClicked((prev) => !prev);
-        setHtmlName(props.name);
+        // setHtmlClicked((prev) => !prev);
+        // setHtmlName(props.name);
+        setActiveFrame({ name: props.name });
       }}
     >
       <Center position={[0, 0.6, 0]}>
