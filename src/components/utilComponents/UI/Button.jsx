@@ -12,14 +12,11 @@ export default function ButtonUI({ children, type }) {
   const hanldeClick = () => {
     if (type === "primary") {
       setIsLetsTalk(true);
-      setActiveFrame({ name: "ContactMe" });
-      // console.log("activeFrame state: ", activeFrame);
     } else {
       setIsLetsTalk(false);
     }
   };
-  // console.log("isLetsTalk state: ", isLetsTalk);
-  // console.log(activeFrame);
+
   return (
     <div onClick={hanldeClick}>
       {type === "primary" ? (

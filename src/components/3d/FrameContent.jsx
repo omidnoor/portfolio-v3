@@ -14,15 +14,11 @@ const componentMapping = {
   ContactMe: React.lazy(() => import("../pageComponents/contactMe/ContactMe")),
 };
 
-const FrameContent = ({ props, handleClick }) => {
+const FrameContent = ({ props }) => {
   const [isActiveFrame, setIsActiveFrame] = useState(false);
-  const [title, setTitle] = useState("");
 
   const activeFrame = useStore((state) => state.activeFrame);
   const portal = useStore((state) => state.portal);
-  const setHtmlName = useStore((state) => state.setHtmlName);
-  const htmlName = useStore((state) => state.htmlName);
-  const setHtmlClicked = useStore((state) => state.setHtmlClicked);
   const setHoverHtml = useStore((state) => state.setHoverHtml);
 
   const ComponentToRender = componentMapping[props.name];

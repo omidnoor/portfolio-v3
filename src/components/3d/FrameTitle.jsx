@@ -1,14 +1,7 @@
 import { Center, Text3D } from "@react-three/drei";
-import { Deep_Blue, Sand_Color } from "../utilComponents/variables/colors";
-import { useStore } from "@/stores/store";
-import TransparentPad from "./TransparentPad";
+import { Sand_Color } from "../utilComponents/variables/colors";
 
 const FrameTitle = ({ props, setTitle }) => {
-  const setHtmlClicked = useStore((state) => state.setHtmlClicked);
-  const setActiveFrame = useStore((state) => state.setActiveFrame);
-  const activeFrame = useStore((state) => state.activeFrame);
-
-  // console.log(props.name);
   return (
     <mesh>
       <Center position={[0, 0.65, 0]}>

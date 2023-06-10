@@ -24,11 +24,8 @@ const ImageFrames = ({
 
   const framesRef = useRef({});
 
-  const htmlClicked = useStore((state) => state.htmlClicked);
   const activeFrame = useStore((state) => state.activeFrame);
   const setActiveFrame = useStore((state) => state.setActiveFrame);
-  const setFrameEventName = useStore((state) => state.setFrameEventName);
-  const htmlName = useStore((state) => state.htmlName);
   const isLetsTalk = useStore((state) => state.isLetsTalk);
   const setIsLetsTalk = useStore((state) => state.setIsLetsTalk);
 
@@ -44,9 +41,10 @@ const ImageFrames = ({
       if (e.object && framesRef.current) {
         const frameName = e.object.name;
         setActiveFrame({ name: frameName });
+        // setIsLetsTalk(false);
       }
     },
-    [framesRef, activeFrame.name, isLetsTalk],
+    [framesRef, activeFrame.name, title, isLetsTalk],
   );
   useEffect(() => {
     if (activeFrame.name && framesRef.current) {
@@ -66,9 +64,15 @@ const ImageFrames = ({
   });
 
   useEffect(() => {
-    console.log(title);
     setActiveFrame({ name: title });
   }, [title]);
+
+  useEffect(() => {
+    if (isLetsTalk) {
+      setActiveFrame({ name: "ContactMe" });
+    }
+    setIsLetsTalk(false);
+  }, [isLetsTalk]);
 
   return (
     <group ref={framesRef} onClick={handleClick}>
