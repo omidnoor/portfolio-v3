@@ -38,5 +38,8 @@
     "wouter": "^2.11.0",
     "yup": "^1.1.1",
     "zustand": "^4.3.8"
+  },
+  "devDependencies": {
+    "prettier": "2.8.8"
   }
 }

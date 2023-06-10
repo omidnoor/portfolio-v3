@@ -7,6 +7,8 @@ import { useStore } from "@/stores/store";
 import { useCursor } from "@react-three/drei";
 import { useCallback } from "react";
 import { memo } from "react";
+import FrameTitle from "./FrameTitle";
+import TransparentPad from "./TransparentPad";
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -18,6 +20,7 @@ const ImageFrames = ({
 }) => {
   const [frameEventName, _] = useState(null);
   const [pagesName, setPagesName] = useState([]);
+  const [title, setTitle] = useState("");
 
   const framesRef = useRef({});
 
@@ -36,13 +39,10 @@ const ImageFrames = ({
   }, []);
 
   const handleClick = useCallback(
-    (event) => {
-      // event.stopPropagation();
-      if (event.object && framesRef.current) {
-        const frameName = event.object.name;
-        // setFrameEventName(frameName);
-        // isLetsTalk && setActiveFrame({ name: "ContactMe" });
-        // !isLetsTalk && setActiveFrame({ name: frameName });
+    (e) => {
+      // e.stopPropagation();
+      if (e.object && framesRef.current) {
+        const frameName = e.object.name;
         setActiveFrame({ name: frameName });
       }
     },
@@ -65,14 +65,20 @@ const ImageFrames = ({
     dampQ(state.camera.quaternion, targetQuaternion, 0.4, delta);
   });
 
-  // useEffect(() => {
-  //   setActiveFrame({ name: htmlName });
-  // }, [htmlClicked]);
+  useEffect(() => {
+    console.log(title);
+    setActiveFrame({ name: title });
+  }, [title]);
 
   return (
     <group ref={framesRef} onClick={handleClick}>
       {pages?.map((props, index) => (
-        <ImageFrame key={props.name} portal={portal} {...props} />
+        <ImageFrame
+          key={props.name}
+          portal={portal}
+          {...props}
+          setTitle={setTitle}
+        />
       ))}
     </group>
   );

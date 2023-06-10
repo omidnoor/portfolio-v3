@@ -20,8 +20,8 @@ const innerScale = [0.9, 0.93, 0.9];
 const innerPosition = [0, 0, 0.2];
 
 const ImageFrame = ({
-  c = new Color(),
-  targetPosition,
+  setTitle,
+  title,
   ...props
 }) => {
   const frameRef = useRef(null);
@@ -65,9 +65,9 @@ const ImageFrame = ({
             />
           )} */}
           {true && <FrameContent props={...props}/>}
-          <TransparentPad />
+          <FrameTitle props={...props}/>
+          <TransparentPad props={...props} setTitle={setTitle} />
         </mesh>
-        <FrameTitle props={...props}/>
       </mesh>
     </group>
   );
