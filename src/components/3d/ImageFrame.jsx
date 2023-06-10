@@ -40,7 +40,6 @@ const ImageFrame = ({
       onPointerEnter={()=>setHoverThree(true)}
       onPointerLeave={() => setHoverThree(false)}
     >
-      {/* {console.log('Frame name: ', props.name)} */}
       <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
         <meshBasicMaterial
@@ -66,8 +65,9 @@ const ImageFrame = ({
             />
           )} */}
           {true && <FrameContent props={...props}/>}
+          <TransparentPad />
         </mesh>
-        <FrameTitle props={...props} />
+        <FrameTitle props={...props}/>
       </mesh>
     </group>
   );

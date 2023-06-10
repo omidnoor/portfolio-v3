@@ -48,9 +48,7 @@ const ImageFrames = ({
     },
     [framesRef, activeFrame.name, isLetsTalk],
   );
-  // console.log(activeFrame);
   useEffect(() => {
-    // console.log("useEffect triggered, activeFrame: ", activeFrame);
     if (activeFrame.name && framesRef.current) {
       const frame = framesRef.current.getObjectByName(activeFrame.name);
       frame.updateWorldMatrix(true, true);

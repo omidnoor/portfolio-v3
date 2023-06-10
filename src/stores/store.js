@@ -15,13 +15,12 @@ export const useStore = create((set) => ({
 
   setActiveFrame: (frame) =>
     set((state) => {
-      // console.log("Frame being set: ", frame);
       return { ...state, activeFrame: frame };
     }),
   setFrameEventName: (eventName) =>
     set((state) => ({ ...state, frameEventName: eventName })),
 
-  setIsaActiveFrame: (isActive) => ({
+  setIsActiveFrame: (isActive) => ({
     ...state,
     isActiveFrame: isActive,
   }),

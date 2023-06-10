@@ -21,8 +21,9 @@ const FrameContent = ({ props }) => {
   const htmlName = useStore((state) => state.htmlName);
   const setHtmlClicked = useStore((state) => state.setHtmlClicked);
   const setHoverHtml = useStore((state) => state.setHoverHtml);
-  console.log(htmlName);
+
   const ComponentToRender = componentMapping[props.name];
+
   const transitions = useTransition(isActiveFrame, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
@@ -49,9 +50,7 @@ const FrameContent = ({ props }) => {
               name={props.name}
               onClick={(event) => {
                 event.stopPropagation();
-                // setHtmlClicked((prev) => !prev);
                 setHtmlName(activeFrame.name);
-                // console.log(e);
               }}
               onMouseEnter={() => {
                 setHoverHtml(true);
