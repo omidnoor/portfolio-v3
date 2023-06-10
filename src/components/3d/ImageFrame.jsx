@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "@/stores/store";
-import { Center, Html, Image, Text3D, useCursor } from "@react-three/drei";
+import { Center, Html, Image, Text3D, useCursor, useMatcapTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { dampC } from "maath/easing";
 import { useEffect, useRef, useState } from "react";
@@ -34,6 +34,8 @@ const ImageFrame = ({
 
   useCursor(hoverThree || hoverHtml);
 
+  const [matcapTexture2] = useMatcapTexture("221917_928380_5F504D_7C746C", 256);
+
   return (
     <group
       onPointerMissed={() => setActiveFrame({ name: "" })}
@@ -42,13 +44,14 @@ const ImageFrame = ({
     >
       <mesh scale={outerScale} position={outerPosition} {...props}>
         <boxGeometry />
-        <meshBasicMaterial
+        {/* <meshBasicMaterial
           color={Deep_Blue}
           metalness={0.5}
           roughness={0.5}
           envMapIntensity={2}
           // toneMapped={false}
-        />
+        /> */}
+        <meshMatcapMaterial matcap={matcapTexture2} />
         <mesh
           ref={frameRef}
           // raycast={() => null}
