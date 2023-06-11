@@ -8,6 +8,8 @@ import { Sand_Color } from "@/components/utilComponents/variables/colors";
 import Cursor from "@/components/utilComponents/UI/Cursor";
 import { Inter } from "next/font/google";
 import { useStore } from "@/stores/store";
+import Projects from "@/components/pageComponents/Projects/Projects";
+import ProjectsContent from "@/components/pageComponents/Projects/ProjectsContent";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -63,6 +65,7 @@ const HomePage = () => {
         className={inter.className}
         ref={domContentRef}
       />
+
       <Layout>
         <Suspense fallback={<CustomLoader />}>
           <group position={[0, -0.9, 0]}>

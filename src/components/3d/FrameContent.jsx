@@ -6,11 +6,14 @@ import { Html, useCursor } from "@react-three/drei";
 import { useStore } from "@/stores/store";
 import { Deep_Blue } from "../utilComponents/variables/colors";
 import FrameTitle from "./FrameTitle";
+import Projects from "../pageComponents/Projects/Projects";
+import ProjectsContent from "../pageComponents/Projects/ProjectsContent";
 
 const componentMapping = {
   Home: React.lazy(() => import("../pageComponents/home/Home")),
   AboutMe: React.lazy(() => import("../pageComponents/aboutMe/AboutMe")),
   ContactMe: React.lazy(() => import("../pageComponents/contactMe/ContactMe")),
+  Projects: React.lazy(() => import("../pageComponents/Projects/Projects")),
 };
 
 const FrameContent = ({ props }) => {
@@ -19,7 +22,6 @@ const FrameContent = ({ props }) => {
   const activeFrame = useStore((state) => state.activeFrame);
   const portal = useStore((state) => state.portal);
   const setHoverHtml = useStore((state) => state.setHoverHtml);
-
   const ComponentToRender = componentMapping[props.name];
 
   const transitions = useTransition(isActiveFrame, {
@@ -36,7 +38,7 @@ const FrameContent = ({ props }) => {
     }
   }, [activeFrame]);
 
-  return (
+  return props.name !== "Projects" ? (
     <mesh>
       <Html portal={portal} scale={0.1} transform sprite>
         {transitions((style, item) =>
@@ -69,6 +71,8 @@ const FrameContent = ({ props }) => {
         {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
       </Html>
     </mesh>
+  ) : (
+    <Projects />
   );
 };
 export default FrameContent;

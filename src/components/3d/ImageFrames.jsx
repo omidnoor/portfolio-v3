@@ -77,8 +77,8 @@ const ImageFrames = ({
         <ImageFrame
           key={props.name}
           portal={portal}
-          {...props}
           setTitle={setTitle}
+          {...props}
         />
       ))}
     </group>
