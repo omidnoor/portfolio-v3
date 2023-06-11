@@ -1,10 +1,11 @@
 @import "@/styles/variables.scss";
 .btn {
+  min-width: map-get($gap, xxl);
   padding: 8px 32px;
   border-radius: 50px;
   font-weight: 600;
   color: #fff;
-  border: 2px solid $btn-primary-color;
+  border: 2px solid $btn-primary-color !important;
   font-size: inherit;
 }
 .btnContained {

@@ -2,9 +2,13 @@
 
 .homeSection {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 0;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .homeImage {
@@ -44,21 +48,30 @@
 .HomeCard {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  padding-top: map-get($gap, xl);
   gap: map-get($gap, xl);
   color: #fff;
   &__socials {
     margin-bottom: map-get($gap, sm);
+    padding-top: map-get($gap, xl);
+    height: 100%;
+    width: 100%;
     display: flex;
-    justify-content: right;
+    align-items: end;
+    padding-bottom: map-get($gap, xl);
+    justify-content: end;
     gap: map-get($gap, lg);
     svg {
-      width: map-get($icon-size, lg);
-      height: map-get($icon-size, lg);
+      width: map-get($icon-size, xl);
+      height: map-get($icon-size, xl);
+      hover {
+        fill: aqua;
+      }
     }
   }
   &__intro {
     width: 100%;
-
     h2 {
       font-size: var(--text-size-xxl);
       display: flex;
@@ -67,8 +80,17 @@
         color: var(--primary-accent-color);
       }
     }
+    h3 {
+      font-size: var(--text-size-xl);
+      display: flex;
+      justify-content: center;
+      span {
+        color: var(--primary-accent-color);
+      }
+    }
     &__skills {
       min-height: var(--m-xxxl);
+      min-width: $bp-sm/1.4;
       margin-top: var(--gap-lg);
       h1 {
         font-size: var(--text-size-xxl);
@@ -90,7 +112,10 @@
   }
   &__actions {
     margin-top: var(--gap-xl);
+    padding-top: map-get($gap, xxxxl);
     width: 100%;
+    min-width: map-get($gap, xxl);
+    min-height: map-get($gap, xxl);
     display: flex;
     justify-content: center;
     gap: var(--gap-xl);
