@@ -2,7 +2,7 @@ import { Canvas, extend } from "@react-three/fiber";
 import { PerspectiveCamera } from "three";
 import { SKY_BLUE } from "../utilComponents/variables/colors";
 
-extend({ PerspectiveCamera });
+// extend({ PerspectiveCamera });
 
 const Layout = ({ children }) => {
   return (

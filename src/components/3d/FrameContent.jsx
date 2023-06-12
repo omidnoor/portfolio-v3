@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 
 import styles from "./content-embed.module.scss";
-import { Html, useCursor } from "@react-three/drei";
+import {
+  Environment,
+  EnvironmentMap,
+  Html,
+  MeshPortalMaterial,
+  PerspectiveCamera,
+  RenderTexture,
+  useCursor,
+} from "@react-three/drei";
 import { useStore } from "@/stores/store";
 import { Deep_Blue } from "../utilComponents/variables/colors";
 import FrameTitle from "./FrameTitle";
@@ -18,6 +26,7 @@ const componentMapping = {
 
 const FrameContent = ({ props }) => {
   const [isActiveFrame, setIsActiveFrame] = useState(false);
+  const [projectTexture, setProjectText] = useState("");
 
   const activeFrame = useStore((state) => state.activeFrame);
   const portal = useStore((state) => state.portal);
@@ -37,7 +46,6 @@ const FrameContent = ({ props }) => {
       setIsActiveFrame(false);
     }
   }, [activeFrame]);
-
   return props.name !== "Projects" ? (
     <mesh>
       <Html portal={portal} scale={0.1} transform sprite>
@@ -67,12 +75,15 @@ const FrameContent = ({ props }) => {
             </React.Suspense>
           ) : null,
         )}
-
         {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
       </Html>
     </mesh>
   ) : (
-    <Projects />
+    <MeshPortalMaterial transparent>
+      <ambientLight intensity={0.7} />
+      <Environment preset="city" />
+      <Projects setProjectText={setProjectText} />
+    </MeshPortalMaterial>
   );
 };
 export default FrameContent;
