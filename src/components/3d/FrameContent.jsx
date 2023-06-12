@@ -79,11 +79,10 @@ const FrameContent = ({ props }) => {
       </Html>
     </mesh>
   ) : (
-    <MeshPortalMaterial transparent>
-      <ambientLight intensity={0.7} />
-      <Environment preset="city" />
+    <>
       <Projects setProjectText={setProjectText} />
-    </MeshPortalMaterial>
+      <meshStandardMaterial attach="material" map={projectTexture} />
+    </>
   );
 };
 export default FrameContent;

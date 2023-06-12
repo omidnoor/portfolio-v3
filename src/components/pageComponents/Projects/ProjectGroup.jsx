@@ -2,7 +2,7 @@ import ProjectPlate from "./ProjectPlate";
 
 const ProjectGroup = () => {
   return (
-    <group position={[0, 0, 1]}>
+    <group>
       <ProjectPlate />
     </group>
   );
