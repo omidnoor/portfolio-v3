@@ -16,8 +16,8 @@ const ProjectPlate = () => {
   });
 
   return (
-    <mesh ref={ref} position={[-3.5, 0.1, 0]}>
-      <boxGeometry args={[0.2, 0.2, 0.2]} />
+    <mesh ref={ref} position={[-3.65, 0.1, 0]} rotation={[0, -Math.PI / 4, 0]}>
+      <boxGeometry args={[0.01, 0.3, 0.3]} />
       <MeshWobbleMaterial color={"#002520"} />
     </mesh>
   );

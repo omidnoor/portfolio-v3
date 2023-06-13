@@ -1,7 +1,11 @@
 import Layout from "@/components/3d/Layout";
 import ImageFrames from "../components/3d/ImageFrames";
-import { Environment, MeshReflectorMaterial } from "@react-three/drei";
-import { Suspense, useRef } from "react";
+import {
+  Environment,
+  MeshReflectorMaterial,
+  useScroll,
+} from "@react-three/drei";
+import { Suspense, useEffect, useRef } from "react";
 import Welcome from "@/components/3d/Welcome";
 import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
 import { Sand_Color } from "@/components/utilComponents/variables/colors";

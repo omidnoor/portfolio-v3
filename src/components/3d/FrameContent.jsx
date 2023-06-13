@@ -46,6 +46,7 @@ const FrameContent = ({ props }) => {
       setIsActiveFrame(false);
     }
   }, [activeFrame]);
+
   return props.name !== "Projects" ? (
     <mesh>
       <Html portal={portal} scale={0.1} transform sprite>
@@ -81,7 +82,8 @@ const FrameContent = ({ props }) => {
   ) : (
     <>
       <Projects setProjectText={setProjectText} />
-      <meshStandardMaterial attach="material" map={projectTexture} />
+      {/* toneMapped={false} to have real color */}
+      <meshStandardMaterial map={projectTexture} toneMapped={false} />
     </>
   );
 };

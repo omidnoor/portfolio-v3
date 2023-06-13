@@ -2,13 +2,19 @@ import { Center, Float, Text3D, useMatcapTexture } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import Effect from "../effect/Effect";
 import { Dark_Purple } from "../utilComponents/variables/colors";
+import { useEffect } from "react";
+import * as THREE from "three";
 
 const Welcome = ({ position, margin = 0.5 }) => {
   const { width, height } = useThree((state) => state.viewport);
 
   const [matcapTexture1] = useMatcapTexture("191514_6D5145_4E3324_3B564D", 256);
   const [matcapTexture2] = useMatcapTexture("191514_6D5145_4E3324_3B564D", 256);
-
+  useEffect(() => {
+    // matcapTexture1.colorSpace = THREE.SRGBColorSpace;
+    // matcapTexture2.colorSpace = THREE.SRGBColorSpace;
+  }),
+    [];
   return (
     <group>
       <Center position={[0, 3.7, 0]}>
