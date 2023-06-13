@@ -18,6 +18,7 @@ const ImageFrames = ({
   const [frameEventName, _] = useState(null);
   const [pagesName, setPagesName] = useState([]);
   const [title, setTitle] = useState("");
+  const [camera, setCamera] = useState(null);
 
   const framesRef = useRef({});
 
@@ -58,7 +59,22 @@ const ImageFrames = ({
   useFrame((state, delta) => {
     damp3(state.camera.position, targetPosition, 0.4, delta);
     dampQ(state.camera.quaternion, targetQuaternion, 0.4, delta);
+    setCamera(state.camera);
   });
+
+  // useEffect(() => {
+  //   window.addEventListener("resize", () => {
+  //     const aspect = window.innerWidth / window.innerHeight;
+  //     console.log(camera);
+  //     if (camera) {
+  //       camera.aspect = aspect;
+  //       camera.updateProjectionMatrix();
+  //     }
+  //   });
+  //   return () => {
+  //     window.removeEventListener("resize", () => {});
+  //   };
+  // }, [window.innerWidth, window.innerHeight]);
 
   useEffect(() => {
     setActiveFrame({ name: title });
