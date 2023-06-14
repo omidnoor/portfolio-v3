@@ -6,6 +6,7 @@ import { damp3, dampQ } from "maath/easing";
 import { useStore } from "@/stores/store";
 import { useCallback } from "react";
 import { memo } from "react";
+import { PerspectiveCamera, RenderTexture, Text } from "@react-three/drei";
 
 const GOLDENRATIO = 1.61803398875;
 
@@ -15,6 +16,12 @@ const ImageFrames = ({
   targetPosition = new Vector3(),
   targetQuaternion = new Quaternion(),
 }) => {
+  const textRef = useRef();
+  useFrame(
+    (state) =>
+      textRef.current &&
+      (textRef.current.position.x = Math.sin(state.clock.elapsedTime) * 2),
+  );
   const [frameEventName, _] = useState(null);
   const [pagesName, setPagesName] = useState([]);
   const [title, setTitle] = useState("");

@@ -71,22 +71,6 @@ const Projects = () => {
     };
   }, [window.innerWidth, window.innerHeight]);
 
-  return (
-    <mesh position={[0, 0, 1]}>
-      <planeGeometry args={[1, 1]} />
-      <meshStandardMaterial>
-        <RenderTexture>
-          <PerspectiveCamera
-            makeDefault
-            manual
-            aspect={1 / 1}
-            position={[0, 0, 7]}
-          />
-          <color attach="background" args={["#000"]} />
-          <ProjectsContent />
-        </RenderTexture>
-      </meshStandardMaterial>
-    </mesh>
-  );
+  return <ProjectsContent />;
 };
 export default Projects;

@@ -3,6 +3,7 @@ import ImageFrames from "../components/3d/ImageFrames";
 import {
   Environment,
   MeshReflectorMaterial,
+  OrbitControls,
   useScroll,
 } from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";

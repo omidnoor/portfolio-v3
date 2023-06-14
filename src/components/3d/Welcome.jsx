@@ -24,7 +24,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
           floatingRange={[-0.1, 0.1]}
         >
           <Text3D
-            // font="/inter_Bold.json"
+            font="/inter_Bold.json"
             letterSpacing={0.02}
             size={Math.max(width * 0.02, 0.2)}
             height={0.09}
@@ -42,7 +42,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
           floatingRange={[-0.1, 0.1]}
         >
           <Text3D
-            // font="/inter_Bold.json"
+            font="/inter_Bold.json"
             letterSpacing={0.02}
             size={Math.max(width * 0.02, 0.2)}
             height={0.09}
@@ -60,7 +60,7 @@ const Welcome = ({ position, margin = 0.5 }) => {
           floatingRange={[-0.1, 0.1]}
         >
           <Text3D
-            // font="/inter_Bold.json"
+            font="/inter_Bold.json"
             letterSpacing={0.02}
             size={Math.max(width * 0.02, 0.2)}
             height={0.09}

@@ -59,7 +59,7 @@ const ImageFrame = ({
           position={innerPosition}
         >
           <boxGeometry />
-          <meshStandardMaterial fog={false}  transparent/>
+          <meshStandardMaterial fog={false}  />
           {/* {!isActiveFrame && (
             <Image
               url={props.url}
