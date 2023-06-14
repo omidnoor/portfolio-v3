@@ -8,7 +8,7 @@ import { useCallback } from "react";
 import { memo } from "react";
 import { PerspectiveCamera, RenderTexture, Text } from "@react-three/drei";
 
-const GOLDENRATIO = 1.61803398875;
+const GOLDENRATIO = 1.6;
 
 const ImageFrames = ({
   pages,

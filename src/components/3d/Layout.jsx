@@ -1,11 +1,11 @@
 import { Canvas } from "@react-three/fiber";
-import { SKY_BLUE } from "../utilComponents/variables/colors";
+import { Deep_Blue, SKY_BLUE } from "../utilComponents/variables/colors";
 
 const Layout = ({ children }) => {
   return (
     <Canvas dpr={[1, 1.5]}>
-      <color attach="background" args={[SKY_BLUE]} />
-      <fog attach="fog" args={[SKY_BLUE, 0, 15]} />
+      <color attach="background" args={[Deep_Blue]} />
+      <fog attach="fog" args={[Deep_Blue, 0, 15]} />
       <ambientLight intensity={1} />
       <pointLight position={[10, 10, 10]} />
 

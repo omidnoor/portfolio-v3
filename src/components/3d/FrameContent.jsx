@@ -82,20 +82,7 @@ const FrameContent = ({ props }) => {
       </Html>
     </mesh>
   ) : (
-    <mesh position={[0, 0, 1]}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial>
-        <RenderTexture attach="map" anisotropy={16}>
-          <PerspectiveCamera position={[0, 0, 5]} />
-          <color attach="background" args={["#ff2151"]} />
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} />
-          <mesh position={[0, 0.5, 1]}>
-            <Projects />
-          </mesh>
-        </RenderTexture>
-      </meshStandardMaterial>
-    </mesh>
+    <Projects />
   );
 };
 export default FrameContent;

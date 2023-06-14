@@ -4,8 +4,8 @@ import ProjectGroup from "./ProjectGroup";
 const ProjectsContent = () => {
   return (
     <group>
-      <ambientLight intensity={0.2} />
-      <pointLight position={[4, 4, 4]} intensity={10} />
+      <ambientLight intensity={0.1} />
+      <pointLight position={[30, 30, 30]} intensity={0.2} />
       <ProjectGroup />
     </group>
   );

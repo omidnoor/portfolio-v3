@@ -11,7 +11,9 @@ import * as THREE from "three";
 
 THREE.ColorManagement.enabled = true;
 
-const ProjectPlate = () => {
+const GOLDENRATIO = 1.6;
+
+const ProjectPlate = ({ position, rotation }) => {
   const [aspect, setAspect] = useState(window.innerWidth / window.innerHeight);
   const ref = useRef();
 
@@ -80,9 +82,14 @@ const ProjectPlate = () => {
   }, [window.innerWidth, window.innerHeight]);
 
   return (
-    <mesh ref={ref} position={[0, 0, 1]}>
-      <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color={SKY_BLUE} />
+    <mesh
+      ref={ref}
+      position={position}
+      rotation={rotation}
+      onPointerEnter={() => {}}
+    >
+      <planeGeometry args={[1 * GOLDENRATIO, 1]} />
+      <meshStandardMaterial color={"#ffefff"} />
     </mesh>
   );
 };

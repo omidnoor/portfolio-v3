@@ -71,6 +71,17 @@ const Projects = () => {
     };
   }, [window.innerWidth, window.innerHeight]);
 
-  return <ProjectsContent />;
+  return (
+    <mesh position={[0, 0, 1]}>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial>
+        <RenderTexture attach="map" anisotropy={16}>
+          <PerspectiveCamera position={[0, 0, 5]} />
+          <color attach="background" args={[Deep_Blue]} />
+          <ProjectsContent />
+        </RenderTexture>
+      </meshStandardMaterial>
+    </mesh>
+  );
 };
 export default Projects;

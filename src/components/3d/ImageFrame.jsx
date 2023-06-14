@@ -12,7 +12,7 @@ import FrameTitle from "./FrameTitle";
 import TitlePlate from "./TitlePlate";
 
 
-const GOLDENRATIO = 1.61803398875;
+const GOLDENRATIO = 1.6;
 
 const outerScale = [1, GOLDENRATIO, 0.05];
 const outerPosition = [0, GOLDENRATIO / 2, 0];

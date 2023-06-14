@@ -9,7 +9,11 @@ import {
 import { Suspense, useEffect, useRef } from "react";
 import Welcome from "@/components/3d/Welcome";
 import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
-import { Sand_Color } from "@/components/utilComponents/variables/colors";
+import {
+  Deep_Blue,
+  SKY_BLUE,
+  Sand_Color,
+} from "@/components/utilComponents/variables/colors";
 import Cursor from "@/components/utilComponents/UI/Cursor";
 import { Inter } from "next/font/google";
 import { useStore } from "@/stores/store";
@@ -86,7 +90,7 @@ const HomePage = () => {
                 depthScale={1.2}
                 minDepthThreshold={0.2}
                 maxDepthThreshold={1.4}
-                color={Sand_Color}
+                color={SKY_BLUE}
                 metalness={0.6}
               />
             </mesh>
