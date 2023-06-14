@@ -91,7 +91,7 @@ const HomePage = () => {
             </mesh>
             {/* <Environment preset="city" /> */}
           </group>
-          <Welcome position={[0, 3, 0]} />
+          {/* <Welcome position={[0, 3, 0]} /> */}
         </Suspense>
       </Layout>
       {/* <Cursor /> */}

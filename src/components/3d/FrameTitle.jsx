@@ -6,7 +6,7 @@ const FrameTitle = ({ props }) => {
     <mesh>
       <Center position={[0, 0.65, 0]}>
         <Text3D
-          font="/Inter_Bold.json"
+          font="/inter_Bold.json"
           letterSpacing={-0.0}
           size={0.1}
           height={0.1}
