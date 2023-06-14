@@ -3,12 +3,14 @@ import { useTransition, animated } from "react-spring";
 
 import styles from "./content-embed.module.scss";
 import {
+  Dodecahedron,
   Environment,
   EnvironmentMap,
   Html,
   MeshPortalMaterial,
   PerspectiveCamera,
   RenderTexture,
+  Text,
   useCursor,
 } from "@react-three/drei";
 import { useStore } from "@/stores/store";
@@ -80,11 +82,7 @@ const FrameContent = ({ props }) => {
       </Html>
     </mesh>
   ) : (
-    <>
-      <Projects setProjectText={setProjectText} />
-      {/* toneMapped={false} to have real color */}
-      <meshStandardMaterial map={projectTexture} toneMapped={false} />
-    </>
+    <Projects />
   );
 };
 export default FrameContent;
