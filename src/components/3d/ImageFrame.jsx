@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "@/stores/store";
-import { Center, Html, Image, Text3D, useCursor, useMatcapTexture } from "@react-three/drei";
+import { Center, Dodecahedron, Html, Image, PerspectiveCamera, RenderTexture, Text, Text3D, useCursor, useMatcapTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { dampC } from "maath/easing";
 import { useEffect, useRef, useState } from "react";
@@ -72,6 +72,7 @@ const ImageFrame = ({
           <TitlePlate props={...props} setTitle={setTitle} />
         </mesh>
       </mesh>
+     
     </group>
   );
 };

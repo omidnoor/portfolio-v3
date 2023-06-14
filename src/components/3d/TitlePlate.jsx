@@ -1,6 +1,6 @@
 import { useMatcapTexture } from "@react-three/drei";
 
-const TransparentPad = ({ props, setTitle }) => {
+const TitlePlate = ({ props, setTitle }) => {
   const [matcapTexture2] = useMatcapTexture("1D2424_565F66_4E555A_646C6E", 256);
 
   return (
@@ -15,4 +15,4 @@ const TransparentPad = ({ props, setTitle }) => {
     </mesh>
   );
 };
-export default TransparentPad;
+export default TitlePlate;
