@@ -27,31 +27,31 @@ const pages = [
     name: "Home",
     position: [0, 1, 1],
     rotation: [0, 0, 0],
-    url: "https://picsum.photos/200/300?grayscale",
+    url: "http://localhost:3000/PageHome",
   },
   {
     name: "AboutMe",
     position: [-1.45, 1, 0.25],
     rotation: [0, Math.PI * 0.25, 0],
-    url: "https://picsum.photos/id/237/200/300",
+    url: "http://localhost:3000/PageAboutMe",
   },
   {
     name: "ContactMe",
     position: [1.45, 1, 0.25],
     rotation: [0, -Math.PI * 0.25, 0],
-    url: "https://picsum.photos/id/237/200/300",
+    url: "http://localhost:3000/PageContactMe",
   },
   {
     name: "Projects",
     position: [-2.15, 1, 1.5],
     rotation: [0, Math.PI * 0.25, 0],
-    url: "https://picsum.photos/id/237/200/300",
+    url: "http://localhost:3000/PageProjects",
   },
   {
     name: "Testimonials",
     position: [2.15, 1, 1.5],
     rotation: [0, -Math.PI * 0.25, 0],
-    url: "https://picsum.photos/id/237/200/300",
+    url: "http://localhost:3000/PageTestimonials",
   },
 ];
 const HomePage = () => {

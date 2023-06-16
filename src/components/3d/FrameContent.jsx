@@ -7,10 +7,10 @@ import { useStore } from "@/stores/store";
 import { Deep_Blue } from "../utilComponents/variables/colors";
 
 const componentMapping = {
-  Home: React.lazy(() => import("../pageComponents/home/Home")),
-  AboutMe: React.lazy(() => import("../pageComponents/aboutMe/AboutMe")),
-  ContactMe: React.lazy(() => import("../pageComponents/contactMe/ContactMe")),
-  Projects: React.lazy(() => import("../pageComponents/Projects/Projects")),
+  Home: React.lazy(() => import("@/pages/PageHome")),
+  AboutMe: React.lazy(() => import("@/pages/PageAboutMe")),
+  ContactMe: React.lazy(() => import("@/pages/PageContactMe")),
+  Projects: React.lazy(() => import("@/pages/PageProjects")),
 };
 
 const FrameContent = ({ props }) => {
@@ -37,7 +37,6 @@ const FrameContent = ({ props }) => {
   return (
     <mesh>
       <Html scale={0.1} wrapperClass={styles.wrapper} transform sprite>
-        
         {transitions((style, item) =>
           item ? (
             <React.Suspense fallback={<div>Loading...</div>}>
@@ -60,8 +59,8 @@ const FrameContent = ({ props }) => {
                   backgroundColor: Deep_Blue,
                 }}
               >
-                
-                {ComponentToRender && <ComponentToRender />}
+                <iframe src={props.url} width="100%" height="100%" />
+                {/* {ComponentToRender && <ComponentToRender />} */}
               </animated.div>
             </React.Suspense>
           ) : null,
