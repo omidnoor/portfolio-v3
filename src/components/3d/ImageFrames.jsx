@@ -69,19 +69,19 @@ const ImageFrames = ({
     setCamera(state.camera);
   });
 
-  // useEffect(() => {
-  //   window.addEventListener("resize", () => {
-  //     const aspect = window.innerWidth / window.innerHeight;
-  //     console.log(camera);
-  //     if (camera) {
-  //       camera.aspect = aspect;
-  //       camera.updateProjectionMatrix();
-  //     }
-  //   });
-  //   return () => {
-  //     window.removeEventListener("resize", () => {});
-  //   };
-  // }, [window.innerWidth, window.innerHeight]);
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      const aspect = window.innerWidth / window.innerHeight;
+      // console.log(camera);
+      if (camera) {
+        camera.aspect = aspect;
+        camera.updateProjectionMatrix();
+      }
+    });
+    return () => {
+      window.removeEventListener("resize", () => {});
+    };
+  }, [window.innerWidth, window.innerHeight]);
 
   useEffect(() => {
     setActiveFrame({ name: title });

@@ -17,9 +17,9 @@ const pages = [
 ];
 
 const Projects = () => {
-  const [aspectRatio, setAspectRatio] = useState(
-    window.innerWidth / window.innerHeight,
-  );
+  //   const [aspectRatio, setAspectRatio] = useState(
+  //     window.innerWidth / window.innerHeight,
+  //   );
   const cam = useRef();
   const index = useRef(0);
   const [domRef, { width }] = useMeasure();
@@ -55,14 +55,14 @@ const Projects = () => {
     },
   );
 
-  useEffect(() => {
-    window.addEventListener("resize", () => {
-      setAspectRatio(window.innerWidth / window.innerHeight);
-    });
-    return () => {
-      window.removeEventListener("resize", () => {});
-    };
-  }, [window.innerWidth, window.innerHeight]);
+  //   useEffect(() => {
+  //     window.addEventListener("resize", () => {
+  //       setAspectRatio(window.innerWidth / window.innerHeight);
+  //     });
+  //     return () => {
+  //       window.removeEventListener("resize", () => {});
+  //     };
+  //   }, [window.innerWidth, window.innerHeight]);
 
   return (
     <div className={styles.container}>

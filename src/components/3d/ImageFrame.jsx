@@ -12,13 +12,6 @@ import FrameTitle from "./FrameTitle";
 import TitlePlate from "./TitlePlate";
 
 
-const GOLDENRATIO = 1.6;
-
-const outerScale = [1, GOLDENRATIO, 0.05];
-const outerPosition = [0, GOLDENRATIO / 2, 0];
-const innerScale = [0.9, 0.93, 0.9];
-const innerPosition = [0, 0, 0.2];
-
 const ImageFrame = ({
   setTitle,
   title,
@@ -31,8 +24,9 @@ const ImageFrame = ({
   const setHoverThree = useStore((state) => state.setHoverThree);
   const hoverThree = useStore((state) => state.hoverThree);
   const hoverHtml = useStore((state) => state.hoverHtml);
+  const GOLDENRATIO = useStore((state) => state.GOLDENRATIO);
 
-  useCursor(hoverThree || hoverHtml);
+  // useCursor(hoverThree || hoverHtml);
 
   const [matcapTexture2] = useMatcapTexture("221917_928380_5F504D_7C746C", 256);
 
@@ -42,7 +36,7 @@ const ImageFrame = ({
       onPointerEnter={()=>setHoverThree(true)}
       onPointerLeave={() => setHoverThree(false)}
     >
-      <mesh scale={outerScale} position={outerPosition} {...props}>
+      <mesh scale={[1, GOLDENRATIO, 0.05]} position={[0, GOLDENRATIO / 2, 0]} {...props}>
         <boxGeometry />
         {/* <meshBasicMaterial
           color={Deep_Blue}
@@ -55,8 +49,8 @@ const ImageFrame = ({
         <mesh
           ref={frameRef}
           // raycast={() => null}
-          scale={innerScale}
-          position={innerPosition}
+          scale={[0.9, 0.93, 0.9]}
+          position={[0, 0, 0.1]}
         >
           <boxGeometry />
           <meshStandardMaterial fog={false}  />

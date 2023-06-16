@@ -10,6 +10,7 @@ export const useStore = create((set) => ({
   isLetsTalk: false,
   hoverHtml: false,
   hoverThree: false,
+  GOLDENRATIO: 1.6,
 
   setHtmlName: (htmlName) => set((state) => ({ ...state, htmlName })),
 

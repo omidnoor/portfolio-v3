@@ -1,8 +1,10 @@
+import FrameButton from "@/components/utilComponents/UI/frameButton/FrameButton";
 import {
   Bright_Pink,
   Deep_Blue,
   SKY_BLUE,
 } from "@/components/utilComponents/variables/colors";
+import { useStore } from "@/stores/store";
 import { PivotControls } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useControls } from "leva";
@@ -11,11 +13,11 @@ import * as THREE from "three";
 
 THREE.ColorManagement.enabled = true;
 
-const GOLDENRATIO = 1.6;
-
-const ProjectPlate = ({ position, rotation }) => {
+const ProjectPlate = ({ position, rotation, props }) => {
   const [aspect, setAspect] = useState(window.innerWidth / window.innerHeight);
   const ref = useRef();
+
+  const GOLDENRATIO = useStore((state) => state.GOLDENRATIO);
 
   // const {
   //   positionX,
@@ -82,15 +84,21 @@ const ProjectPlate = ({ position, rotation }) => {
   }, [window.innerWidth, window.innerHeight]);
 
   return (
-    <mesh
-      ref={ref}
-      position={position}
-      rotation={rotation}
-      onPointerEnter={() => {}}
-    >
-      <planeGeometry args={[1 * GOLDENRATIO, 1]} />
-      <meshStandardMaterial color={"#ffefff"} />
-    </mesh>
+    <group>
+      <mesh
+        ref={ref}
+        position={position}
+        rotation={rotation}
+        onPointerEnter={() => {}}
+      >
+        <planeGeometry args={[1 * GOLDENRATIO, 1]} />
+        <meshStandardMaterial color={"#ffefff"} />
+      </mesh>
+      <FrameButton
+        position={[-2.15, -0.5, 1.5]}
+        rotation={[0, Math.PI * 0.25, 0]}
+      />
+    </group>
   );
 };
 export default ProjectPlate;

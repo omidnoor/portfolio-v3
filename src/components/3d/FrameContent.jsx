@@ -2,22 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useTransition, animated } from "react-spring";
 
 import styles from "./content-embed.module.scss";
-import {
-  Dodecahedron,
-  Environment,
-  EnvironmentMap,
-  Html,
-  MeshPortalMaterial,
-  PerspectiveCamera,
-  RenderTexture,
-  Text,
-  useCursor,
-} from "@react-three/drei";
+import { Html } from "@react-three/drei";
 import { useStore } from "@/stores/store";
 import { Deep_Blue } from "../utilComponents/variables/colors";
-import FrameTitle from "./FrameTitle";
-import Projects from "../pageComponents/Projects/Projects";
-import ProjectsContent from "../pageComponents/Projects/ProjectsContent";
 
 const componentMapping = {
   Home: React.lazy(() => import("../pageComponents/home/Home")),
@@ -28,7 +15,6 @@ const componentMapping = {
 
 const FrameContent = ({ props }) => {
   const [isActiveFrame, setIsActiveFrame] = useState(false);
-  const [projectTexture, setProjectText] = useState("");
 
   const activeFrame = useStore((state) => state.activeFrame);
   const portal = useStore((state) => state.portal);
@@ -48,10 +34,10 @@ const FrameContent = ({ props }) => {
       setIsActiveFrame(false);
     }
   }, [activeFrame]);
-
-  return props.name !== "Projects" ? (
+  return (
     <mesh>
-      <Html portal={portal} scale={0.1} transform sprite>
+      <Html scale={0.1} wrapperClass={styles.wrapper} transform sprite>
+        
         {transitions((style, item) =>
           item ? (
             <React.Suspense fallback={<div>Loading...</div>}>
@@ -70,9 +56,11 @@ const FrameContent = ({ props }) => {
                   height: "617px",
                   padding: 0,
                   margin: 0,
+                  overflow: "hidden",
                   backgroundColor: Deep_Blue,
                 }}
               >
+                
                 {ComponentToRender && <ComponentToRender />}
               </animated.div>
             </React.Suspense>
@@ -81,8 +69,6 @@ const FrameContent = ({ props }) => {
         {/* {!isActiveFrame && <Image src={props.url} fill alt="image" />} */}
       </Html>
     </mesh>
-  ) : (
-    <Projects />
   );
 };
 export default FrameContent;

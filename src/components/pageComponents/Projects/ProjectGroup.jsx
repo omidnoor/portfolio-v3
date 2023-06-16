@@ -1,6 +1,9 @@
+import { useStore } from "@/stores/store";
 import ProjectPlate from "./ProjectPlate";
 
-const ProjectGroup = () => {
+const ProjectGroup = ({ props }) => {
+  const GOLDENRATIO = useStore((state) => state.GOLDENRATIO);
+
   return (
     <group>
       <ProjectPlate
