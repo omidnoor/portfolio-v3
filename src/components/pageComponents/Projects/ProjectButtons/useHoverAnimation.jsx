@@ -11,15 +11,19 @@ const useHoverAnimation = () => {
       //   y: -20,
       scale: 1.2,
       loop: { reverse: true },
-      config: { tension: 50, friction: 2 },
+      config: { tension: 100, friction: 10 },
     });
   };
 
   const handleMouseLeave = () => {
     setIsHovered(false);
-    setScale({ scale: 1, loop: false, config: { tension: 200, friction: 2 } });
+    setScale({
+      scale: 1,
+      loop: false,
+      config: { tension: 500, friction: 10 },
+    });
   };
 
-  return { scale, isHovered, setIsHovered, handleMouseEnter, handleMouseLeave };
+  return { scale, handleMouseEnter, handleMouseLeave };
 };
 export default useHoverAnimation;

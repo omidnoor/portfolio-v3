@@ -2,10 +2,10 @@ import { FaGithub } from "react-icons/fa";
 import styles from "../projects.module.scss";
 import { config, useSpring, animated } from "react-spring";
 import useHoverAnimation from "./useHoverAnimation";
+import Link from "next/link";
 
 const GithubButton = () => {
-  const { scale, isHovered, setIsHovered, handleMouseEnter, handleMouseLeave } =
-    useHoverAnimation();
+  const { scale, handleMouseEnter, handleMouseLeave } = useHoverAnimation();
   return (
     <animated.div
       className={styles.buttons_github}
@@ -14,7 +14,9 @@ const GithubButton = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <FaGithub />
+      <Link href="https://github.com">
+        <FaGithub />
+      </Link>
     </animated.div>
   );
 };

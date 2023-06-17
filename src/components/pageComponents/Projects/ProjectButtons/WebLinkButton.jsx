@@ -2,20 +2,22 @@ import { FaLink } from "react-icons/fa";
 import styles from "../projects.module.scss";
 import { config, useSpring, animated } from "react-spring";
 import useHoverAnimation from "./useHoverAnimation";
+import Link from "next/link";
 
 const WebLinkButton = () => {
-  const { scale, isHovered, setIsHovered, handleMouseEnter, handleMouseLeave } =
-    useHoverAnimation();
+  const { scale, handleMouseEnter, handleMouseLeave } = useHoverAnimation();
 
   return (
-    <div
+    <animated.div
       className={styles.buttons_weblink}
-      style={{ transform: scale.to((value) => `translateY(${value}px)`) }}
+      style={{ scale: scale.to((value) => value) }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <FaLink />
-    </div>
+      <Link href="https://github.com">
+        <FaLink />
+      </Link>
+    </animated.div>
   );
 };
 export default WebLinkButton;

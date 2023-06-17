@@ -48,8 +48,13 @@ const Projects = () => {
         return { x, scale, display: "block" };
       });
     },
+    {
+      axis: "x",
+      filterTaps: true,
+      pointer: { touch: true },
+    },
   );
-
+  console.log(handleDrag);
   return (
     <div className={styles.container}>
       <div ref={domRef} className={styles.wrapper}>
@@ -63,6 +68,7 @@ const Projects = () => {
             <animated.div
               key={pages[i].title}
               style={{ scale, backgroundImage: `url(${pages[i].link})` }}
+              className={styles.projects}
             />
             <ProjectPlate index={i} pages={pages} />
           </animated.div>
