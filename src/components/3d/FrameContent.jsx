@@ -24,7 +24,7 @@ const FrameContent = ({ props }) => {
   const transitions = useTransition(isActiveFrame, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
-    config: { tension: 10, friction: 10 },
+    config: { tension: 100, friction: 100 },
   });
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const FrameContent = ({ props }) => {
                   backgroundColor: Deep_Blue,
                 }}
               >
-                <iframe src={props.url} width="100%" height="100%" />
+                <iframe src={props.url} width="370px" height="617px" />
                 {/* {ComponentToRender && <ComponentToRender />} */}
               </animated.div>
             </React.Suspense>

@@ -1,11 +1,6 @@
 import Layout from "@/components/3d/Layout";
 import ImageFrames from "../components/3d/ImageFrames";
-import {
-  Environment,
-  MeshReflectorMaterial,
-  OrbitControls,
-  useScroll,
-} from "@react-three/drei";
+import { Environment, MeshReflectorMaterial } from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";
 import Welcome from "@/components/3d/Welcome";
 import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
@@ -14,11 +9,9 @@ import {
   SKY_BLUE,
   Sand_Color,
 } from "@/components/utilComponents/variables/colors";
-import Cursor from "@/components/utilComponents/UI/Cursor";
+
 import { Inter } from "next/font/google";
 import { useStore } from "@/stores/store";
-import Projects from "@/components/pageComponents/Projects/Projects";
-import ProjectsContent from "@/components/pageComponents/Projects/ProjectsContent";
 
 const inter = Inter({ subsets: ["latin"] });
 
