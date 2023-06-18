@@ -48,7 +48,7 @@ const AboutMe = () => {
           {/* <color attach="background" args={[presetTexture]} /> */}
           <ambientLight intensity={1} />
           {/* <pointLight position={[40, 40, 40]} intensity={1} /> */}
-          <AboutCloud count={7} radius={40} wordColor={wordColor} />
+          <AboutCloud count={10} radius={40} wordColor={wordColor} />
           <AboutSphere setBg={set} wordColor={wordColor} />
           <TrackballControls />
         </Suspense>

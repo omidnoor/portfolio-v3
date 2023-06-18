@@ -19,4 +19,11 @@ export const wordsEducation = [
   "Bachelors Degree",
 ];
 
-export const wordsGeneral = ["creative", "hardworking"];
+export const wordsGeneral = [
+  "creative",
+  "hardworking",
+  "creative",
+  "hardworking",
+  "creative",
+  "hardworking",
+];

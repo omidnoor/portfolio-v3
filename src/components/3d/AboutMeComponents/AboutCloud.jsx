@@ -26,17 +26,18 @@ const AboutCloud = ({ count = 4, radius = 30, wordColor }) => {
         ];
       }
     };
+    // console.log(randWords("general"));
     let word = "";
     let wordType = "";
     for (let i = 1; i < count + 1; i++) {
       for (let j = 0; j < count * 2; j++) {
-        if (i <= 3) {
+        if (i < 4) {
           word = randWords("tech");
           wordType = "tech";
-        } else if ((i = 5)) {
-          word = randWords("general");
-          wordType = "general";
-        } else if ((i = 6)) {
+        } else if (i > 4 && i < 6) {
+          word = randWords("education");
+          wordType = "education";
+        } else if (i > 6) {
           word = randWords("general");
           wordType = "general";
         }
