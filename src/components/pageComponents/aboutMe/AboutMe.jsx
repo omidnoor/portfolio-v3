@@ -1,20 +1,59 @@
 import AboutCloud from "@/components/3d/AboutMeComponents/AboutCloud";
-import AboutLayout from "@/components/3d/AboutMeComponents/AboutLayout";
 import AboutSphere from "@/components/3d/AboutMeComponents/AboutSphere";
-import AboutWord from "@/components/3d/AboutMeComponents/AboutWord";
-import { TrackballControls } from "@react-three/drei";
+import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
+import { a } from "@react-spring/web";
+
+import {
+  Environment,
+  TrackballControls,
+  useEnvironment,
+} from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import { useSpring } from "react-spring";
 
 const AboutMe = () => {
+  const [{ background, fill, wordColor }, set] = useSpring(
+    {
+      background: "#fcfcff",
+      fill: "#000039",
+      wordColor: {
+        tech: "#000039",
+        education: "#0b0210",
+        general: "#021510",
+      },
+    },
+    [],
+  );
+
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 35], fov: 90 }}>
-      <fog attach="fog" args={["#202025", 0, 100]} />
-      <ambientLight intensity={1} />
-      <pointLight position={[10, 10, 10]} />
-      <AboutCloud count={5} radius={40} />
-      <AboutSphere />
-      <TrackballControls />
-    </Canvas>
+    <a.div
+      style={{
+        background,
+        margin: "0",
+        padding: "0",
+        width: "100%",
+        height: "100%",
+      }}
+    >
+      <Canvas
+        // colorManagement
+        dpr={[1, 2]}
+        camera={{ position: [0, 0, 55], fov: 100 }}
+      >
+        <Suspense fallback={<CustomLoader />}>
+          <Suspense fallback={<CustomLoader />}>
+            <fog attach="fog" args={["#000066", 0, 100]} />
+          </Suspense>
+          {/* <color attach="background" args={[presetTexture]} /> */}
+          <ambientLight intensity={1} />
+          {/* <pointLight position={[40, 40, 40]} intensity={1} /> */}
+          <AboutCloud count={7} radius={40} wordColor={wordColor} />
+          <AboutSphere setBg={set} wordColor={wordColor} />
+          <TrackballControls />
+        </Suspense>
+      </Canvas>
+    </a.div>
   );
 };
 export default AboutMe;

@@ -12,3 +12,11 @@ export const wordsTech = [
   "Git",
   "GitHub",
 ];
+export const wordsEducation = [
+  "Mech Eng",
+  "Neuroscience",
+  "Masters degree",
+  "Bachelors Degree",
+];
+
+export const wordsGeneral = ["creative", "hardworking"];

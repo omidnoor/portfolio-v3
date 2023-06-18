@@ -54,7 +54,6 @@ const Projects = () => {
       pointer: { touch: true },
     },
   );
-  console.log(handleDrag);
   return (
     <div className={styles.container}>
       <div ref={domRef} className={styles.wrapper}>

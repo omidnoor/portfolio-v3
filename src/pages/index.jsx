@@ -92,7 +92,6 @@ const HomePage = () => {
           {/* <Welcome position={[0, 3, 0]} /> */}
         </Suspense>
       </Layout>
-      {/* <Cursor /> */}
     </>
   );
 };
