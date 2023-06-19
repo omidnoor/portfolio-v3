@@ -3,11 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 
 const TitlePlate = ({ props, setTitle }) => {
-  const [matcapTexture2, setMatcapTexture2] = useState(null);
-  const matcap = useMatcapTexture("1D2424_565F66_4E555A_646C6E", 256);
-  useEffect(() => {
-    setMatcapTexture2(matcap);
-  }, [matcap]);
+  const [matcapTexture2] = useMatcapTexture("221917_928380_5F504D_7C746C", 256);
 
   return (
     <mesh
@@ -17,7 +13,7 @@ const TitlePlate = ({ props, setTitle }) => {
       }}
     >
       <planeGeometry args={[1.07, 0.2]} />
-      <meshMatcapMaterial matcap={matcapTexture2} toneMapped={false} />
+      <meshMatcapMaterial matcap={matcapTexture2} />
     </mesh>
   );
 };

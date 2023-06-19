@@ -15,12 +15,12 @@ import { useSpring } from "react-spring";
 const AboutMe = () => {
   const [{ background, fill, wordColor }, set] = useSpring(
     {
-      background: "#fcfcff",
+      background: "#000039",
       fill: "#000039",
       wordColor: {
-        tech: "#000039",
-        education: "#0b0210",
-        general: "#021510",
+        tech: "#2dbbf0",
+        education: "#02ff10",
+        general: "#006239",
       },
     },
     [],
@@ -48,7 +48,7 @@ const AboutMe = () => {
           {/* <color attach="background" args={[presetTexture]} /> */}
           <ambientLight intensity={1} />
           {/* <pointLight position={[40, 40, 40]} intensity={1} /> */}
-          <AboutCloud count={10} radius={40} wordColor={wordColor} />
+          <AboutCloud count={8} radius={40} wordColor={wordColor} />
           <AboutSphere setBg={set} wordColor={wordColor} />
           <TrackballControls />
         </Suspense>

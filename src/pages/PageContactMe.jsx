@@ -1,4 +1,6 @@
+import ContactScene from "@/components/3d/ContactMeComponents/ContactScene";
+
 const PageContactMe = () => {
-  return <div>PageContactMe</div>;
+  return <ContactScene />;
 };
 export default PageContactMe;

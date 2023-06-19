@@ -63,7 +63,7 @@ const ImageFrame = ({
           )} */}
           {true && <FrameContent props={...props}/>}
           <FrameTitle props={...props}/>
-          {/* <TitlePlate props={...props} setTitle={setTitle} /> */}
+          <TitlePlate props={...props} setTitle={setTitle} />
         </mesh>
       </mesh>
      

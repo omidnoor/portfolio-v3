@@ -66,20 +66,26 @@ const AboutSphere = ({ setBg, wordColor }) => {
       <a.mesh
         ref={sphere}
         scale={wobble}
-        onPointerOver={() => setHovered(true)}
-        onPointerOut={() => setHovered(false)}
+        onPointerOver={(e) => {
+          e.stopPropagation();
+          setHovered(true);
+        }}
+        onPointerOut={(e) => {
+          e.stopPropagation();
+          setHovered(false);
+        }}
         onPointerDown={() => setDown(true)}
         onPointerUp={() => {
           setDown(false);
           // Toggle mode between dark and bright
           setMode(!mode);
           setBg({
-            background: !mode ? "#000039" : "#f0f0f0",
+            background: !mode ? "#2d88f0" : "#000039",
             fill: !mode ? "#f0f0f0" : "#000039",
             wordColor: {
-              tech: !mode ? "#39ffff" : "#000039",
-              education: !mode ? "#f88fff" : "#021510",
-              general: !mode ? "#f0f0f0" : "#000039",
+              tech: !mode ? "#000039" : "#2dbbf0",
+              education: !mode ? "#f880cf" : "#02ff10",
+              general: !mode ? "#f0f0f0" : "#006239",
             },
           });
         }}
