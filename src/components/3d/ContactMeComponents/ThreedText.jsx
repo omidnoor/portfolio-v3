@@ -20,7 +20,7 @@ const ThreedText = () => {
     //   rotation={[0, 0, 0]}
     //   config={{ mass: 1, tension: 170, friction: 10 }}
     // >
-    <Center position={[0, 5, -10]} rotation={[Math.PI / 8, 0, 0]}>
+    <Center position={[0, 8, -5]} rotation={[Math.PI / 8, 0, 0]}>
       <Text3D
         curveSegments={32}
         bevelEnabled

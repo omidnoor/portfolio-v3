@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 import { MeshMatcapMaterial } from "three";
 import ThreedText from "./ThreedText";
 import ContactFields from "./ContactFields";
+import { Suspense } from "react";
+import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
 
 const ContactScene = () => {
   return (
@@ -20,9 +22,13 @@ const ContactScene = () => {
       <color attach="background" args={["#fff0cc"]} />
       <ambientLight intensity={1000} />
       {/* <pointLight position={[10, 100, 0]} intensity={1000} /> */}
-      <PerspectiveCamera position={[0, 0, 0]}>
-        <ThreedText />
-        <ContactFields />
+      <PerspectiveCamera position={[0, 0, -8]}>
+        <Suspense fallback={<CustomLoader />}>
+          <Center>
+            <ThreedText />
+            <ContactFields />
+          </Center>
+        </Suspense>
       </PerspectiveCamera>
     </Canvas>
   );
