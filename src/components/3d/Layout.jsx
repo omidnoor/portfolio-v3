@@ -6,7 +6,7 @@ const Layout = ({ children }) => {
     <Canvas dpr={[1, 1.5]}>
       <color attach="background" args={[Deep_Blue]} />
       <fog attach="fog" args={[Deep_Blue, 0, 15]} />
-      <ambientLight intensity={1} />
+      <ambientLight intensity={2} />
       <pointLight position={[10, 10, 10]} />
 
       {children}
