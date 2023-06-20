@@ -38,13 +38,6 @@ const ImageFrame = ({
     >
       <mesh scale={[1, GOLDENRATIO, 0.05]} position={[0, GOLDENRATIO / 2, 0]} {...props}>
         <boxGeometry />
-        {/* <meshBasicMaterial
-          color={Deep_Blue}
-          metalness={0.5}
-          roughness={0.5}
-          envMapIntensity={2}
-          // toneMapped={false}
-        /> */}
         <meshMatcapMaterial matcap={matcapTexture2} />
         <mesh
           ref={frameRef}

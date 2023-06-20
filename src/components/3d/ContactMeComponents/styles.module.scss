@@ -1,0 +1,71 @@
+@import "@/styles/variables.scss";
+
+@font-face {
+  font-family: "Inter Regular";
+  src: url("/Inter-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.content {
+  width: 400px;
+  height: 600px;
+  background: $tertiary-glow;
+  /* background: red; */
+  padding: 0;
+  font-family: $font-inter;
+
+  .wrapper {
+    padding: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* transform-origin: top left; */
+
+    .form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      input,
+      textarea,
+      label {
+        margin: 0 auto;
+        width: min(300px, 95%);
+      }
+      input {
+        height: 50px;
+      }
+      label {
+        margin-bottom: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .input,
+      .textarea {
+        &::placeholder,
+        &::-webkit-input-placeholder,
+        &::-moz-placeholder,
+        &:-moz-placeholder,
+        &::-ms-input-placeholder {
+          padding-left: 1rem;
+          font-family: $font-inter;
+        }
+        font-family: $font-inter;
+        background-color: #ffffef;
+        border: none;
+        color: #000;
+        font-size: 16px;
+        padding: 0.5rem;
+      }
+
+      .textarea {
+        resize: none;
+        height: 230px;
+      }
+    }
+  }
+}
