@@ -1,4 +1,10 @@
+import TestScene from "@/components/3d/TestComponents/TestScene";
+
 const PageTestimonials = () => {
-  return <div>PageTestimonials</div>;
+  return (
+    <group>
+      <TestScene />
+    </group>
+  );
 };
 export default PageTestimonials;

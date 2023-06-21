@@ -1,6 +1,10 @@
 import Layout from "@/components/3d/Layout";
 import ImageFrames from "../components/3d/ImageFrames";
-import { Environment, MeshReflectorMaterial } from "@react-three/drei";
+import {
+  Environment,
+  MeshReflectorMaterial,
+  OrbitControls,
+} from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";
 import Welcome from "@/components/3d/Welcome";
 import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
@@ -12,6 +16,7 @@ import {
 
 import { Inter } from "next/font/google";
 import { useStore } from "@/stores/store";
+import SceneModel from "@/components/3d/Models/SceneModel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -69,10 +74,12 @@ const HomePage = () => {
       />
 
       <Layout>
+        <OrbitControls />
         <Suspense fallback={<CustomLoader />}>
           <group position={[0, -0.9, 0]}>
-            <ImageFrames pages={pages} portal={portal} />
-            <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+            <SceneModel />
+            {/* <ImageFrames pages={pages} portal={portal} /> */}
+            {/* <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
               <planeGeometry args={[50, 50]} />
               <MeshReflectorMaterial
                 blur={[300, 100]}
@@ -86,7 +93,7 @@ const HomePage = () => {
                 color={SKY_BLUE}
                 metalness={0.6}
               />
-            </mesh>
+            </mesh> */}
             {/* <Environment preset="city" /> */}
           </group>
           {/* <Welcome position={[0, 3, 0]} /> */}
