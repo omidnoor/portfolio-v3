@@ -4,19 +4,17 @@ import {
   Environment,
   MeshReflectorMaterial,
   OrbitControls,
+  PerspectiveCamera,
 } from "@react-three/drei";
 import { Suspense, useEffect, useRef } from "react";
-import Welcome from "@/components/3d/Welcome";
 import CustomLoader from "@/components/utilComponents/Loader/CustomLoader";
-import {
-  Deep_Blue,
-  SKY_BLUE,
-  Sand_Color,
-} from "@/components/utilComponents/variables/colors";
 
 import { Inter } from "next/font/google";
 import { useStore } from "@/stores/store";
 import SceneModel from "@/components/3d/Models/SceneModel";
+
+import TargetCamera from "@/components/3d/Utils/TargetCamera";
+import Menu from "@/components/3d/UI/Menu/Menu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -74,10 +72,15 @@ const HomePage = () => {
       />
 
       <Layout>
-        <OrbitControls />
         <Suspense fallback={<CustomLoader />}>
+          {/* <OrbitControls /> */}
+          <pointLight position={[10, 10, 10]} intensity={1} />
+          <ambientLight intensity={0.5} />
+          <PerspectiveCamera makeDefault position={[0, 0, 0]} />
           <group position={[0, -0.9, 0]}>
             <SceneModel />
+            <Menu />
+            <TargetCamera />
             {/* <ImageFrames pages={pages} portal={portal} /> */}
             {/* <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
               <planeGeometry args={[50, 50]} />
